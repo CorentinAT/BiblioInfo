@@ -31,34 +31,6 @@ def create_genre(conn, genre):
   conn.commit()
   return cur.lastrowid
 
-def create_doc(conn, doc):
-  sql = "INSERT INTO Document (titre, description, auteur, disponible) VALUES (?, ?, ?, true)"
-  cur = conn.cursor
-  conn.commit()
-  return cur.lastrowid
-
-def select_item(conn, item_id):
-  sql = "SELECT * FROM item WHERE id=?"
-  cur = conn.cursor()
-  cur.execute(sql, (item_id,))
-  row = cur.fetchall()
-  return row
-
-def select_all_rayons(conn):
-  sql = "SELECT * FROM Rayon"
-  cur = conn.cursor()
-  cur.execute(sql)
-
-  rows = cur.fetchall()
-
-  return rows
-
-def delete_all_items(conn):
-  sql = "DELETE FROM item"
-  cur = conn.cursor()
-  cur.execute(sql)
-  conn.commit()
-
 def main():
   database = r"bdd.db"
 
