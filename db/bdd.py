@@ -98,9 +98,16 @@ def select_note_avg_doc(conn, idDoc):
   return row[0][0]
 
 def select_all_genres(conn):
-  sql = "SELECT * FROM Genres;"
+  sql = "SELECT * FROM Genre;"
   cur = conn.cursor()
   cur.execute(sql)
+  row = cur.fetchall()
+  return row
+
+def select_genres_document(conn, idDoc):
+  sql = "SELECT g.idgenre, g.nomgenre FROM Genre g JOIN DefinitGenre dg ON g.idgenre=dg.idgenre WHERE dg.iddoc=?;"
+  cur = conn.cursor()
+  cur.execute(sql, (idDoc,))
   row = cur.fetchall()
   return row
 

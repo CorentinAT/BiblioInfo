@@ -38,6 +38,13 @@ class DefinitTheme(BaseModel):
 class NoteMoyenne(BaseModel):
   notemoyenne: float
 
+class ListeGenres(BaseModel):
+  listegenres: list
+
+class Genre(BaseModel):
+  idgenre: str
+  nomgenre: str
+
 def to_object_document(document)->Document:
   objDoc = Document(id=document[0], titre=document[1], description=document[2], auteur=document[3], disponible=document[4], idrayon=document[5])
   return objDoc
@@ -58,6 +65,18 @@ def to_object_note(note)->Note:
   objNote = Note(idnote=note[0], note=note[1], iddoc=note[2])
   return objNote
 
+def to_object_genre(genre)->Genre:
+  objGenre = Genre(idgenre=genre[0], nomgenre=genre[1])
+  return objGenre
+
 def to_object_note_moyenne(notemoyenne)->NoteMoyenne:
   objNoteMoyenne = NoteMoyenne(notemoyenne=notemoyenne)
   return objNoteMoyenne
+
+def to_object_liste_genres(listegenres)->ListeGenres:
+  objListeGenre = ListeGenres(listegenres=[])
+  for genre in listegenres:
+    if genre!=():
+      genre = to_object_genre(genre)
+      objListeGenre.listegenres.append(genre)
+  return objListeGenre

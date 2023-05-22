@@ -32,4 +32,14 @@ def get_note_avg_doc(idDoc: int):
 
 @app.get("/genres")
 def get_liste_genres():
-  conn = bdd.create_connection(db_file)
+  conn = bdd.create_connection(database)
+  listegenres = bdd.select_all_genres(conn)
+  listegenres = classes.to_object_liste_genres(listegenres)
+  return listegenres
+
+@app.get("/document/{idDoc}/genres")
+def get_genres_document(idDoc: int):
+  conn = bdd.create_connection(database)
+  listegenres = bdd.select_genres_document(conn, idDoc)
+  listegenres = classes.to_object_liste_genres(listegenres)
+  return listegenres
