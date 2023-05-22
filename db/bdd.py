@@ -111,6 +111,13 @@ def select_genres_document(conn, idDoc):
   row = cur.fetchall()
   return row
 
+def select_themes_document(conn, idDoc):
+  sql = "SELECT t.idtheme, t.nomtheme FROM Theme t JOIN DefinitTheme dt ON t.idtheme=dt.idtheme WHERE dt.iddoc=?;"
+  cur = conn.cursor()
+  cur.execute(sql, (idDoc,))
+  row = cur.fetchall()
+  return row
+
 def main():
   database = r"bdd.db"
 

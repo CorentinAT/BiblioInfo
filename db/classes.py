@@ -45,6 +45,13 @@ class Genre(BaseModel):
   idgenre: str
   nomgenre: str
 
+class ListeThemes(BaseModel):
+  listethemes: list
+
+class Theme(BaseModel):
+  idtheme: str
+  nomtheme: str
+
 def to_object_document(document)->Document:
   objDoc = Document(id=document[0], titre=document[1], description=document[2], auteur=document[3], disponible=document[4], idrayon=document[5])
   return objDoc
@@ -69,14 +76,26 @@ def to_object_genre(genre)->Genre:
   objGenre = Genre(idgenre=genre[0], nomgenre=genre[1])
   return objGenre
 
+def to_object_theme(theme)->Theme:
+  objTheme = Theme(idtheme=theme[0], nomtheme=theme[1])
+  return objTheme
+
 def to_object_note_moyenne(notemoyenne)->NoteMoyenne:
   objNoteMoyenne = NoteMoyenne(notemoyenne=notemoyenne)
   return objNoteMoyenne
 
 def to_object_liste_genres(listegenres)->ListeGenres:
-  objListeGenre = ListeGenres(listegenres=[])
+  objListeGenres = ListeGenres(listegenres=[])
   for genre in listegenres:
     if genre!=():
       genre = to_object_genre(genre)
-      objListeGenre.listegenres.append(genre)
-  return objListeGenre
+      objListeGenres.listegenres.append(genre)
+  return objListeGenres
+
+def to_object_liste_themes(listethemes)->ListeThemes:
+  objListeThemes = ListeThemes(listethemes=[])
+  for theme in listethemes:
+    if themes!=():
+      theme = to_object_theme(theme)
+      objListeTheme.listethemes.append(theme)
+  return objListeThemes
