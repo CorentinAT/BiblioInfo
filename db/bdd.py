@@ -69,27 +69,33 @@ def create_note(conn, note):
   return cur.lastrowid
 
 def link_document_genre(conn, idDoc, idGenre):
-  data = (idDoc, idGenre)
   sql = "INSERT INTO DefinitGenre (iddoc, idgenre) VALUES (?, ?)"
   cur = conn.cursor()
-  cur.execute(sql, data)
+  cur.execute(sql, (idDoc, idGenre))
   conn.commit()
   return cur.lastrowid
 
 def link_document_theme(conn, idDoc, idTheme):
-  data = (idDoc, idTheme)
   sql = "INSERT INTO DefinitTheme (iddoc, idtheme) VALUES (?, ?)"
   cur = conn.cursor()
-  cur.execute(sql, data)
+  cur.execute(sql, (idDoc, idTheme))
   conn.commit()
   return cur.lastrowid
 
-def select_avg_note(conn, idDoc):
-  sql = "SELECT AVG(note) FROM Note WHERE iddoc = ?;"
-  cur = conn.cursor
+def select_document_by_id(conn, idDoc):
+  sql = "SELECT * FROM Document WHERE id = ?;"
+  cur = conn.cursor()
   cur.execute(sql, (idDoc,))
   row = cur.fetchall()
-  return row
+  return row[0]
+
+def select_note_avg_doc(conn, idDoc):
+  sql = "SELECT AVG(note) FROM Note WHERE iddoc = ?;"
+  cur = conn.cursor()
+  cur.execute(sql, (idDoc,))
+  row = cur.fetchall()
+  print(row)
+  return row[0][0]
 
 def main():
   database = r"bdd.db"
@@ -179,6 +185,11 @@ def main():
     link_document_genre(conn, 2, "G1")
     link_document_genre(conn, 2, "G2")
     link_document_genre(conn, 3, "G1")
+
+    create_note(conn, (4, 2))
+    create_note(conn, (2, 2))
+
+    select_document_by_id(conn, 3)
     # Fin de la partie tests
   else:
     print("Error, can't create the database connection")

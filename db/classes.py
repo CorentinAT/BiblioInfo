@@ -4,8 +4,8 @@ from typing import Optional
 class Document(BaseModel):
   id: int
   titre: str
-  description: Optionnal[str] = None
-  auteur: Optionnal[str] = None
+  description: Optional[str] = None
+  auteur: Optional[str] = None
   disponible: bool
   idrayon: str
 
@@ -35,6 +35,9 @@ class DefinitTheme(BaseModel):
   iddoc: int
   idtheme: str
 
+class NoteMoyenne(BaseModel):
+  notemoyenne: float
+
 def to_object_document(document)->Document:
   objDoc = Document(id=document[0], titre=document[1], description=document[2], auteur=document[3], disponible=document[4], idrayon=document[5])
   return objDoc
@@ -54,3 +57,7 @@ def to_object_theme(theme)->Theme:
 def to_object_note(note)->Note:
   objNote = Note(idnote=note[0], note=note[1], iddoc=note[2])
   return objNote
+
+def to_object_note_moyenne(notemoyenne)->NoteMoyenne:
+  objNoteMoyenne = NoteMoyenne(notemoyenne=notemoyenne)
+  return objNoteMoyenne
