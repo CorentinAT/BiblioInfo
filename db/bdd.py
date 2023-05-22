@@ -84,6 +84,13 @@ def link_document_theme(conn, idDoc, idTheme):
   conn.commit()
   return cur.lastrowid
 
+def select_avg_note(conn, idDoc):
+  sql = "SELECT AVG(note) FROM Note WHERE iddoc = ?;"
+  cur = conn.cursor
+  cur.execute(sql, (idDoc,))
+  row = cur.fetchall()
+  return row
+
 def main():
   database = r"bdd.db"
 
@@ -112,9 +119,9 @@ def main():
   sql_create_document_table = """
   CREATE TABLE IF NOT EXISTS Document (
     id INT PRIMARY KEY,
-    titre VARCHAR(50) NOT NULL,
+    titre VARCHAR NOT NULL,
     description TEXT,
-    auteur VARCHAR(50),
+    auteur VARCHAR,
     disponible LOGICAL NOT NULL,
     idrayon VARCHAR NOT NULL,
     FOREIGN KEY(idrayon) REFERENCES Rayon(idrayon)
@@ -132,7 +139,7 @@ def main():
   sql_create_definit_genre_table = """
   CREATE TABLE IF NOT EXISTS DefinitGenre (
     iddoc INT,
-    idgenre INT,
+    idgenre VARCHAR,
     PRIMARY KEY(iddoc, idgenre),
     FOREIGN KEY(iddoc) REFERENCES Document(id),
     FOREIGN KEY(idgenre) REFERENCES Genre(idgenre)
@@ -141,7 +148,7 @@ def main():
   sql_create_definit_theme_table = """
   CREATE TABLE IF NOT EXISTS DefinitTheme (
     iddoc INT,
-    idtheme VARCHAR(50),
+    idtheme VARCHAR,
     PRIMARY KEY(iddoc, idtheme),
     FOREIGN KEY(iddoc) REFERENCES Document(id),
     FOREIGN KEY(idtheme) REFERENCES Theme(idtheme)

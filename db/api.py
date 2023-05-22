@@ -1,8 +1,7 @@
 from fastapi import FastAPI, Path, Query, HTTPException, status
-from typing import Optional
-from pydantic import BaseModel
-import db
+import bdd
 
 app = FastAPI()
 
 database = r"bdd.db"
+
