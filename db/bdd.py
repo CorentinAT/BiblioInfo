@@ -97,6 +97,13 @@ def select_note_avg_doc(conn, idDoc):
   print(row)
   return row[0][0]
 
+def select_all_genres(conn):
+  sql = "SELECT * FROM Genres;"
+  cur = conn.cursor()
+  cur.execute(sql)
+  row = cur.fetchall()
+  return row
+
 def main():
   database = r"bdd.db"
 

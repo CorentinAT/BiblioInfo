@@ -29,3 +29,7 @@ def get_note_avg_doc(idDoc: int):
   else:
     note_moyenne = classes.to_object_note_moyenne(note_moyenne)
   return note_moyenne
+
+@app.get("/genres")
+def get_liste_genres():
+  conn = bdd.create_connection(db_file)
