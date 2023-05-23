@@ -57,17 +57,17 @@ def update_document(idDoc: int, document: classes.UpdateDocument):
     bdd.select_document_by_id(conn, idDoc)
   except:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ce document n'existe pas")
+  if document.idrayon != None:
+    try:
+      bdd.select_rayon_by_id(conn, document.idrayon)
+    except:
+      raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Le rayon n'existe pas")
   if document.titre != None:
     document_id = bdd.update_info_document(conn, idDoc, "titre", document.titre)
   if document.auteur != None:
     document_id = bdd.update_info_document(conn, idDoc, "auteur", document.auteur)
   if document.disponible != None:
     document_id = bdd.update_info_document(conn, idDoc, "disponible", document.disponible)
-  if document.idrayon != None:
-    try:
-      bdd.select_rayon_by_id(conn, document.idrayon)
-    except:
-      raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Le rayon n'existe pas")
     document_id = bdd.update_info_document(conn, idDoc, "idrayon", document.idrayon)
   return document_id
 
