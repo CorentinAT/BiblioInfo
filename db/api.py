@@ -50,6 +50,20 @@ def create_note(note : classes.Note):
   note_id = bdd.create_note(conn, (note.note, note.iddoc))
   return note_id
 
+@app.post("/create_document")
+def create_document(document: classes.Document):
+  conn = bdd.create_connection(database)
+  try:
+    bdd.select_rayon_by_id(conn, document.idrayon)
+  except:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Le rayon n'existe pas")
+  document_id = bdd.create_document(conn, (document.titre, document.disponible, document.idrayon))
+  if document.description != None:
+    bdd.update_info_document(conn, document_id, "description", document.description)
+  if document.auteur != None:
+    bdd.update_info_document(conn, document_id, "auteur", document.auteur)
+  return document_id
+
 @app.put("/document/{idDoc}/update")
 def update_document(idDoc: int, document: classes.UpdateDocument):
   conn = bdd.create_connection(database)
@@ -69,18 +83,4 @@ def update_document(idDoc: int, document: classes.UpdateDocument):
   if document.disponible != None:
     document_id = bdd.update_info_document(conn, idDoc, "disponible", document.disponible)
     document_id = bdd.update_info_document(conn, idDoc, "idrayon", document.idrayon)
-  return document_id
-
-@app.post("/create_document")
-def create_document(document: classes.Document):
-  conn = bdd.create_connection(database)
-  try:
-    bdd.select_rayon_by_id(conn, document.idrayon)
-  except:
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Le rayon n'existe pas")
-  document_id = bdd.create_document(conn, (document.titre, document.disponible, document.idrayon))
-  if document.description != None:
-    bdd.update_info_document(conn, document_id, "description", document.description)
-  if document.auteur != None:
-    bdd.update_info_document(conn, document_id, "auteur", document.auteur)
   return document_id
