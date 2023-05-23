@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from typing import Optional
 
 class Document(BaseModel):
-  id: int
   titre: str
   description: Optional[str] = None
   auteur: Optional[str] = None
@@ -58,7 +57,7 @@ class Theme(BaseModel):
   nomtheme: str
 
 def to_object_document(document)->Document:
-  objDoc = Document(id=document[0], titre=document[1], description=document[2], auteur=document[3], disponible=document[4], idrayon=document[5])
+  objDoc = Document(titre=document[1], description=document[2], auteur=document[3], disponible=document[4], idrayon=document[5])
   return objDoc
 
 def to_object_rayon(rayon)->Rayon:

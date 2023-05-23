@@ -124,10 +124,10 @@ def select_themes_document(conn, idDoc):
   row = cur.fetchall()
   return row
 
-def update_info_document(conn, info, donnee):
-  sql = f"UPDATE Document SET {info}=?"
+def update_info_document(conn, idDoc, info, donnee):
+  sql = f"UPDATE Document SET {info}=? WHERE id=?;"
   cur = conn.cursor()
-  cur.execute(sql, (donnee,))
+  cur.execute(sql, (donnee, idDoc,))
   conn.commit()
 
 def main():

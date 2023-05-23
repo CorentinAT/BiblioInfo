@@ -80,11 +80,21 @@ def update_document(idDoc: int, document: classes.UpdateDocument):
   except:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ce document n'existe pas")
   if document.titre != None:
-    document_id = bdd.update_info_document(conn, "titre", document.titre)
+    document_id = bdd.update_info_document(conn, idDoc, "titre", document.titre)
   if document.auteur != None:
-    document_id = bdd.update_info_document(conn, "auteur", document.auteur)
+    document_id = bdd.update_info_document(conn, idDoc, "auteur", document.auteur)
   if document.disponible != None:
-    document_id = bdd.update_info_document(conn, "disponible", document.disponible)
+    document_id = bdd.update_info_document(conn, idDoc, "disponible", document.disponible)
   if document.idrayon != None:
-    document_id = bdd.update_info_document(conn, "idrayon", document.idrayon)
+    document_id = bdd.update_info_document(conn, idDoc, "idrayon", document.idrayon)
+  return document_id
+
+@app.post("/create_document")
+def create_document(document: classes.Document):
+  conn = bdd.create_connection(database)
+  document_id = bdd.create_document(conn, (document.titre, document.disponible, document.idrayon))
+  if document.description != None:
+    bdd.update_info_document(conn, document_id, "description", document.description)
+  if document.auteur != None:
+    bdd.update_info_document(conn, document_id, "auteur", document.auteur)
   return document_id
