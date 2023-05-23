@@ -69,6 +69,10 @@ def get_themes_document(idDoc: int):
 @app.post("/create_note")
 def create_note(note : classes.Note):
   conn = bdd.create_connection(database)
+  try:
+    bdd.select_document_by_id(conn, note.iddoc)
+  except:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ce document n'existe pas")
   note_id = bdd.create_note(conn, (note.note, note.iddoc))
   return note_id
 
