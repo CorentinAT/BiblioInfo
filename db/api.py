@@ -40,6 +40,10 @@ def get_liste_genres():
 @app.get("/document/{idDoc}/genres")
 def get_genres_document(idDoc: int):
   conn = bdd.create_connection(database)
+  try:
+    bdd.select_document_by_id(conn, idDoc)
+  except:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ce document n'existe pas")
   listegenres = bdd.select_genres_document(conn, idDoc)
   listegenres = classes.to_object_liste_genres(listegenres)
   return listegenres
@@ -47,6 +51,10 @@ def get_genres_document(idDoc: int):
 @app.get("/document/{idDoc}/themes")
 def get_themes_document(idDoc: int):
   conn = bdd.create_connection(database)
+  try:
+    bdd.select_document_by_id(conn, idDoc)
+  except:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ce document n'existe pas")
   listethemes = bdd.select_themes_document(conn, idDoc)
   listethemes = classes.to_object_liste_themes(listethemes)
   return listethemes
