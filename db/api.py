@@ -37,6 +37,13 @@ def get_liste_genres():
   listegenres = classes.to_object_liste_genres(listegenres)
   return listegenres
 
+@app.get("/themes")
+def get_liste_themes():
+  conn = bdd.create_connection(database)
+  listethemes = bdd.select_all_themes(conn)
+  listethemes = classes.to_object_liste_themes(listethemes)
+  return listethemes
+
 @app.get("/document/{idDoc}/genres")
 def get_genres_document(idDoc: int):
   conn = bdd.create_connection(database)

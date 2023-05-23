@@ -103,6 +103,13 @@ def select_all_genres(conn):
   row = cur.fetchall()
   return row
 
+def select_all_themes(conn):
+  sql = "SELECT * FROM Theme;"
+  cur = conn.cursor()
+  cur.execute(sql)
+  row = cur.fetchall()
+  return row
+
 def select_genres_document(conn, idDoc):
   sql = "SELECT g.idgenre, g.nomgenre FROM Genre g JOIN DefinitGenre dg ON g.idgenre=dg.idgenre WHERE dg.iddoc=?;"
   cur = conn.cursor()
