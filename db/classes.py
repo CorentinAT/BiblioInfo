@@ -39,9 +39,6 @@ class DefinitTheme(BaseModel):
   iddoc: int
   idtheme: str
 
-class NoteMoyenne(BaseModel):
-  notemoyenne: float
-
 class ListeGenres(BaseModel):
   listegenres: list
 
@@ -55,6 +52,16 @@ class ListeThemes(BaseModel):
 class Theme(BaseModel):
   idtheme: str
   nomtheme: str
+
+class DocumentComplet(BaseModel):
+  titre: str
+  description: Optional[str] = None
+  auteur: Optional[str] = None
+  disponible: bool
+  rayon: Rayon
+  note_moyenne: float
+  themes: ListeThemes
+  genres: ListeGenres
 
 def to_object_document(document)->Document:
   objDoc = Document(titre=document[1], description=document[2], auteur=document[3], disponible=document[4], idrayon=document[5])
@@ -84,9 +91,9 @@ def to_object_theme(theme)->Theme:
   objTheme = Theme(idtheme=theme[0], nomtheme=theme[1])
   return objTheme
 
-def to_object_note_moyenne(notemoyenne)->NoteMoyenne:
-  objNoteMoyenne = NoteMoyenne(notemoyenne=notemoyenne)
-  return objNoteMoyenne
+# def to_object_note_moyenne(notemoyenne)->NoteMoyenne:
+#   objNoteMoyenne = NoteMoyenne(notemoyenne=notemoyenne)
+#   return objNoteMoyenne
 
 def to_object_liste_genres(listegenres)->ListeGenres:
   objListeGenres = ListeGenres(listegenres=[])
@@ -103,3 +110,7 @@ def to_object_liste_themes(listethemes)->ListeThemes:
       theme = to_object_theme(theme)
       objListeTheme.listethemes.append(theme)
   return objListeThemes
+
+def to_object_document_complet(document: Document, rayon: Rayon, note_moyenne: float, listegenres: ListeGenres, listethemes:ListeThemes)->DocumentComplet:
+  objDocumentComplet = DocumentComplet(titre=document.titre, description=document.description, auteur=document.auteur, disponible=document.disponible, rayon=rayon, note_moyenne=note_moyenne, genres=listegenres, themes=listethemes)
+  return objDocumentComplet

@@ -124,6 +124,13 @@ def select_themes_document(conn, idDoc):
   row = cur.fetchall()
   return row
 
+def select_rayon_by_id(conn, idRayon):
+  sql = "SELECT * from Rayon WHERE idrayon=?;"
+  cur = conn.cursor()
+  cur.execute(sql, (idRayon,))
+  row = cur.fetchall()
+  return row[0]
+
 def update_info_document(conn, idDoc, info, donnee):
   sql = f"UPDATE Document SET {info}=? WHERE id=?;"
   cur = conn.cursor()
