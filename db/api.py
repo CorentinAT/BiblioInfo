@@ -75,5 +75,16 @@ def create_note(note : classes.Note):
 @app.put("/document/{idDoc}/update")
 def update_document(idDoc: int, document: classes.UpdateDocument):
   conn = bdd.create_connection(database)
+  try:
+    bdd.select_document_by_id(conn, idDoc)
+  except:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ce document n'existe pas")
   if document.titre != None:
     document_id = bdd.update_info_document(conn, "titre", document.titre)
+  if document.auteur != None:
+    document_id = bdd.update_info_document(conn, "auteur", document.auteur)
+  if document.disponible != None:
+    document_id = bdd.update_info_document(conn, "disponible", document.disponible)
+  if document.idrayon != None:
+    document_id = bdd.update_info_document(conn, "idrayon", document.idrayon)
+  return document_id
