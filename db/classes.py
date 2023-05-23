@@ -23,7 +23,6 @@ class Theme(BaseModel):
   nomtheme: str
 
 class Note(BaseModel):
-  idnote: int
   note: int
   iddoc: int
 
@@ -69,7 +68,7 @@ def to_object_theme(theme)->Theme:
   return objTheme
 
 def to_object_note(note)->Note:
-  objNote = Note(idnote=note[0], note=note[1], iddoc=note[2])
+  objNote = Note(note=note[1], iddoc=note[2])
   return objNote
 
 def to_object_genre(genre)->Genre:

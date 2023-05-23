@@ -58,3 +58,9 @@ def get_themes_document(idDoc: int):
   listethemes = bdd.select_themes_document(conn, idDoc)
   listethemes = classes.to_object_liste_themes(listethemes)
   return listethemes
+
+@app.post("/create_note")
+def create_document(note : classes.Note):
+  conn = bdd.create_connection(database)
+  note_id = bdd.create_note(conn, (note.note, note.iddoc))
+  return note_id

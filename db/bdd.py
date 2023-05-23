@@ -63,6 +63,7 @@ def create_note(conn, note):
   else:
     sql = "INSERT INTO Note (idnote, note, iddoc) VALUES (?, ?, ?)"
     note = (idMax + 1,) + note
+  print(note)
   cur = conn.cursor()
   cur.execute(sql, note)
   conn.commit()
