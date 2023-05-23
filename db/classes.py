@@ -9,6 +9,12 @@ class Document(BaseModel):
   disponible: bool
   idrayon: str
 
+class UpdateDocument(BaseModel):
+  titre: Optional[str] = None
+  auteur: Optional[str] = None
+  disponible: Optional[bool] = None
+  idrayon: Optional[str] = None
+
 class Rayon(BaseModel):
   idrayon: str
   nomrayon: str

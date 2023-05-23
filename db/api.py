@@ -71,3 +71,9 @@ def create_note(note : classes.Note):
   conn = bdd.create_connection(database)
   note_id = bdd.create_note(conn, (note.note, note.iddoc))
   return note_id
+
+@app.put("/document/{idDoc}/update")
+def update_document(idDoc: int, document: classes.UpdateDocument):
+  conn = bdd.create_connection(database)
+  if document.titre != None:
+    document_id = bdd.update_info_document(conn, "titre", document.titre)

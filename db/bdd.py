@@ -124,6 +124,12 @@ def select_themes_document(conn, idDoc):
   row = cur.fetchall()
   return row
 
+def update_info_document(conn, info, donnee):
+  sql = f"UPDATE Document SET {info}=?"
+  cur = conn.cursor()
+  cur.execute(sql, (donnee,))
+  conn.commit()
+
 def main():
   database = r"bdd.db"
 
