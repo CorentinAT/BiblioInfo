@@ -3,6 +3,7 @@ from typing import Optional
 
 class Document(BaseModel):
   titre: str
+  liencouverture: Optional[str] = None
   description: Optional[str] = None
   auteur: Optional[str] = None
   disponible: bool
@@ -10,6 +11,7 @@ class Document(BaseModel):
 
 class UpdateDocument(BaseModel):
   titre: Optional[str] = None
+  liencouverture: Optional[str] = None
   auteur: Optional[str] = None
   disponible: Optional[bool] = None
   idrayon: Optional[str] = None
@@ -47,6 +49,7 @@ class Theme(BaseModel):
 
 class DocumentComplet(BaseModel):
   titre: str
+  liencouverture: Optional[str] = None
   description: Optional[str] = None
   auteur: Optional[str] = None
   disponible: bool
@@ -56,7 +59,7 @@ class DocumentComplet(BaseModel):
   genres: ListeGenres
 
 def to_object_document(document)->Document:
-  objDoc = Document(titre=document[1], description=document[2], auteur=document[3], disponible=document[4], idrayon=document[5])
+  objDoc = Document(titre=document[1], liencouverture=document[2], description=document[3], auteur=document[4], disponible=document[5], idrayon=document[6])
   return objDoc
 
 def to_object_rayon(rayon)->Rayon:

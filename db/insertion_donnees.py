@@ -1,8 +1,10 @@
 import bdd
 
+# Connexion à la base de données
 database = r"bdd.db"
 conn = bdd.create_connection(database)
 
+# Création de genres
 bdd.create_genre(conn, ("FICT", "Fiction générale"))
 bdd.create_genre(conn, ("MYST/SUSP", "Mystère et Suspense"))
 bdd.create_genre(conn, ("ROM", "Romance"))
@@ -10,7 +12,6 @@ bdd.create_genre(conn, ("SF/FANT", "Science-fiction et Fantaisie"))
 bdd.create_genre(conn, ("BIO", "Biographie"))
 bdd.create_genre(conn, ("HIST", "Histoire"))
 bdd.create_genre(conn, ("POL", "Policier"))
-bdd.create_genre(conn, ("AUTO", "Autobiographie"))
 bdd.create_genre(conn, ("DRAMA", "Drame"))
 bdd.create_genre(conn, ("POE", "Poésie"))
 bdd.create_genre(conn, ("CLAS", "Classique"))
@@ -19,6 +20,7 @@ bdd.create_genre(conn, ("ART", "Art"))
 bdd.create_genre(conn, ("BUS", "Business"))
 bdd.create_genre(conn, ("PHILO", "Philosophie"))
 
+# Création de thèmes
 bdd.create_theme(conn, ("AMO", "Amour"))
 bdd.create_theme(conn, ("AVE", "Aventure"))
 bdd.create_theme(conn, ("FAM", "Famille"))
@@ -40,36 +42,38 @@ bdd.create_theme(conn, ("RELIG", "Religion"))
 bdd.create_theme(conn, ("PHIL", "Philosophie"))
 bdd.create_theme(conn, ("ART", "Art"))
 
+#Création de rayons
 bdd.create_rayon(conn, ("FICT", "Fiction générale", 2))
-bdd.create_rayon(conn, ("MYST/SUSP", "Mystère et Suspense", 0))
+bdd.create_rayon(conn, ("POE", "Poésie", 0))
 bdd.create_rayon(conn, ("ROM", "Romance", 1))
 bdd.create_rayon(conn, ("SF/FANT", "Science-fiction et Fantaisie", 3))
 bdd.create_rayon(conn, ("BIO", "Biographie", 2))
-bdd.create_rayon(conn, ("HIST", "Histoire", 0))
+bdd.create_rayon(conn, ("DRAMA", "Drame", 0))
 bdd.create_rayon(conn, ("POL", "Policier", 1))
-bdd.create_rayon(conn, ("ESSAI", "Essai", 3))
+bdd.create_rayon(conn, ("CLAS", "Classique", 3))
 
+#Création de document
 document_id = bdd.create_document(conn, ("Le Seigneur des Anneaux", True, "SF/FANT"))
 bdd.update_info_document(conn, document_id, "description", "Dans un monde imaginaire, un jeune hobbit doit détruire un anneau maléfique pour sauver la Terre du Milieu.")
 bdd.update_info_document(conn, document_id, "auteur", "J.R.R. Tolkien")
 
-document_id = bdd.create_document(conn, ("Harry Potter à l'école des sorciers", True, "FICT"))
+document_id = bdd.create_document(conn, ("Harry Potter à l'école des sorciers", True, "SF/FANT"))
 bdd.update_info_document(conn, document_id, "description", "Un jeune sorcier découvre qu'il est le célèbre Harry Potter et qu'il a été accepté à Poudlard, une école de magie.")
 bdd.update_info_document(conn, document_id, "auteur", "J.K. Rowling")
 
-document_id = bdd.create_document(conn, ("Le Petit Prince", True, "FICT"))
+document_id = bdd.create_document(conn, ("Le Petit Prince", True, "SF/FANT"))
 bdd.update_info_document(conn, document_id, "description", "Un jeune prince voyageur partage ses expériences sur différentes planètes avec un pilote échoué dans le désert.")
 bdd.update_info_document(conn, document_id, "auteur", "Antoine de Saint-Exupéry")
 
-document_id = bdd.create_document(conn, ("Les Misérables", True, "FICT"))
+document_id = bdd.create_document(conn, ("Les Misérables", True, "DRAMA"))
 bdd.update_info_document(conn, document_id, "description", "L'histoire d'un ancien forçat cherchant la rédemption dans une France tourmentée par les révolutions.")
 bdd.update_info_document(conn, document_id, "auteur", "Victor Hugo")
 
-document_id = bdd.create_document(conn, ("Orgueil et Préjugés", True, "FICT"))
+document_id = bdd.create_document(conn, ("Orgueil et Préjugés", True, "ROM"))
 bdd.update_info_document(conn, document_id, "description", "Dans l'Angleterre du XIXe siècle, l'histoire d'amour compliquée entre Elizabeth Bennet et Mr. Darcy.")
 bdd.update_info_document(conn, document_id, "auteur", "Jane Austen")
 
-document_id = bdd.create_document(conn, ("Crime et Châtiment", True, "FICT"))
+document_id = bdd.create_document(conn, ("Crime et Châtiment", True, "DRAMA"))
 bdd.update_info_document(conn, document_id, "description", "Un étudiant en droit commet un meurtre et est tourmenté par sa conscience dans la Russie impériale.")
 bdd.update_info_document(conn, document_id, "auteur", "Fyodor Dostoevsky")
 
@@ -81,7 +85,7 @@ document_id = bdd.create_document(conn, ("Les Quatre Filles du docteur March", T
 bdd.update_info_document(conn, document_id, "description", "L'histoire des sœurs March, Meg, Jo, Beth et Amy, pendant la guerre de Sécession aux États-Unis.")
 bdd.update_info_document(conn, document_id, "auteur", "Louisa May Alcott")
 
-document_id = bdd.create_document(conn, ("Le Nom de la Rose", True, "FICT"))
+document_id = bdd.create_document(conn, ("Le Nom de la Rose", True, "POL"))
 bdd.update_info_document(conn, document_id, "description", "Dans un monastère médiéval, un moine franciscain enquête sur une série de meurtres mystérieux.")
 bdd.update_info_document(conn, document_id, "auteur", "Umberto Eco")
 
@@ -93,7 +97,7 @@ document_id = bdd.create_document(conn, ("Les Trois Mousquetaires", True, "FICT"
 bdd.update_info_document(conn, document_id, "description", "Les aventures d'un jeune homme nommé d'Artagnan qui aspire à devenir mousquetaire du roi.")
 bdd.update_info_document(conn, document_id, "auteur", "Alexandre Dumas")
 
-document_id = bdd.create_document(conn, ("L'Étranger", True, "FICT"))
+document_id = bdd.create_document(conn, ("L'Étranger", True, "DRAMA"))
 bdd.update_info_document(conn, document_id, "description", "L'histoire d'un homme indifférent à tout ce qui l'entoure, jusqu'à ce qu'un événement tragique bouleverse sa vie.")
 bdd.update_info_document(conn, document_id, "auteur", "Albert Camus")
 
@@ -101,11 +105,11 @@ document_id = bdd.create_document(conn, ("Moby Dick", True, "FICT"))
 bdd.update_info_document(conn, document_id, "description", "L'obsession d'un capitaine pour la chasse à la baleine blanche légendaire, Moby Dick.")
 bdd.update_info_document(conn, document_id, "auteur", "Herman Melville")
 
-document_id = bdd.create_document(conn, ("L'Odyssée", True, "FICT"))
+document_id = bdd.create_document(conn, ("L'Odyssée", True, "CLAS"))
 bdd.update_info_document(conn, document_id, "description", "Le récit des aventures d'Ulysse lors de son voyage de retour vers Ithaque après la guerre de Troie.")
 bdd.update_info_document(conn, document_id, "auteur", "Homer")
 
-document_id = bdd.create_document(conn, ("Le Rouge et le Noir", True, "FICT"))
+document_id = bdd.create_document(conn, ("Le Rouge et le Noir", True, "CLAS"))
 bdd.update_info_document(conn, document_id, "description", "L'histoire d'un jeune homme ambitieux nommé Julien Sorel qui gravit les échelons de la société.")
 bdd.update_info_document(conn, document_id, "auteur", "Stendhal")
 
@@ -113,7 +117,7 @@ document_id = bdd.create_document(conn, ("Don Quichotte", True, "FICT"))
 bdd.update_info_document(conn, document_id, "description", "Les aventures comiques d'un chevalier obsédé par les romans de chevalerie et de son fidèle écuyer, Sancho Panza.")
 bdd.update_info_document(conn, document_id, "auteur", "Miguel de Cervantes")
 
-document_id = bdd.create_document(conn, ("Anna Karenina", True, "FICT"))
+document_id = bdd.create_document(conn, ("Anna Karenina", True, "ROM"))
 bdd.update_info_document(conn, document_id, "description", "L'histoire d'Anna Karenina, une femme mariée qui succombe à une passion amoureuse qui bouleverse sa vie.")
 bdd.update_info_document(conn, document_id, "auteur", "Leo Tolstoy")
 
@@ -149,7 +153,7 @@ document_id = bdd.create_document(conn, ("Les Piliers de la Terre", True, "FICT"
 bdd.update_info_document(conn, document_id, "description", "L'histoire de la construction d'une cathédrale au XIIe siècle, avec des complots, des amours interdites et des luttes de pouvoir.")
 bdd.update_info_document(conn, document_id, "auteur", "Ken Follett")
 
-document_id = bdd.create_document(conn, ("Le Portrait de Dorian Gray", True, "FICT"))
+document_id = bdd.create_document(conn, ("Le Portrait de Dorian Gray", True, "SF/FANT"))
 bdd.update_info_document(conn, document_id, "description", "Un jeune homme vend son âme pour conserver sa jeunesse éternelle, tandis que son portrait vieillit et reflète ses actes immoraux.")
 bdd.update_info_document(conn, document_id, "auteur", "Oscar Wilde")
 
@@ -177,7 +181,7 @@ document_id = bdd.create_document(conn, ("L'Alchimiste", True, "FICT"))
 bdd.update_info_document(conn, document_id, "description", "Un jeune berger entreprend un voyage à la recherche de son trésor personnel et découvre des leçons spirituelles sur son chemin.")
 bdd.update_info_document(conn, document_id, "auteur", "Paulo Coelho")
 
-document_id = bdd.create_document(conn, ("Cent ans de solitude", True, "FICT"))
+document_id = bdd.create_document(conn, ("Cent ans de solitude", True, "SF/FANT"))
 bdd.update_info_document(conn, document_id, "description", "L'histoire de la famille Buendía sur plusieurs générations, dans un village isolé où se mêlent réalité et magie.")
 bdd.update_info_document(conn, document_id, "auteur", "Gabriel García Márquez")
 
@@ -185,7 +189,7 @@ document_id = bdd.create_document(conn, ("1984", True, "FICT"))
 bdd.update_info_document(conn, document_id, "description", "Un monde dystopique où la surveillance constante et le contrôle totalitaire régissent la vie des individus.")
 bdd.update_info_document(conn, document_id, "auteur", "George Orwell")
 
-document_id = bdd.create_document(conn, ("Le Nom de la Rose", True, "FICT"))
+document_id = bdd.create_document(conn, ("Le Nom de la Rose", True, "POL"))
 bdd.update_info_document(conn, document_id, "description", "Une enquête sur une série de meurtres mystérieux dans un monastère médiéval, menée par un moine franciscain.")
 bdd.update_info_document(conn, document_id, "auteur", "Umberto Eco")
 
@@ -193,4 +197,7 @@ document_id = bdd.create_document(conn, ("Le Parfum", True, "FICT"))
 bdd.update_info_document(conn, document_id, "description", "L'histoire d'un homme doté d'un sens olfactif extraordinaire qui recherche le parfum ultime en utilisant des méthodes sinistres.")
 bdd.update_info_document(conn, document_id, "auteur", "Patrick Süskind")
 
+# Atttribution de genres aux documents
 bdd.link_document_genre(conn, 1, "FICT")
+
+# Attribution de thèmes aux documents

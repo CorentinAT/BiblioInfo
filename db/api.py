@@ -9,6 +9,7 @@ database = r"bdd.db"
 
 @app.get("/document/{idDoc}")
 def get_document_by_id(idDoc: int):
+  """Récupère l'ensemble des informations liées à un document via son ID"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   document = bdd.select_document_by_id(conn, idDoc)
@@ -27,6 +28,7 @@ def get_document_by_id(idDoc: int):
 
 @app.get("/search_documents_by_title_genres")
 def get_documents_by_title_and_genres(titre: str, idsGenres: list = Query(default=[], alias="idGenre")):
+  """Récupère les documents contenants le(s) mot(s)-clé(s) donné(s) et ayant comme genre(s) le(s) genre(s) donné(s)"""
   conn = bdd.create_connection(database)
   for idGenre in idsGenres:
     verifs.verif_genre_existe(conn, idGenre)
@@ -35,6 +37,7 @@ def get_documents_by_title_and_genres(titre: str, idsGenres: list = Query(defaul
 
 @app.get("/genres")
 def get_liste_genres():
+  """Récupère la liste de l'ensemble des genres de la bibliothèque"""
   conn = bdd.create_connection(database)
   listegenres = bdd.select_all_genres(conn)
   listegenres = classes.to_object_liste_genres(listegenres)
@@ -42,6 +45,7 @@ def get_liste_genres():
 
 @app.get("/themes")
 def get_liste_themes():
+  """Récupère la liste de l'ensemble des thèmes de la bibliothèque"""
   conn = bdd.create_connection(database)
   listethemes = bdd.select_all_themes(conn)
   listethemes = classes.to_object_liste_themes(listethemes)
@@ -49,6 +53,7 @@ def get_liste_themes():
 
 @app.post("/create_note")
 def create_note(note : classes.Note):
+  """Créer une note (de 0 à 5) attribuée à un document via son ID"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, note.iddoc)
   note_id = bdd.create_note(conn, (note.note, note.iddoc))
@@ -56,9 +61,12 @@ def create_note(note : classes.Note):
 
 @app.post("/create_document")
 def create_document(document: classes.Document):
+  """Créer un document, l'id est créé automatiquement, liencouverture, auteur et description facultatif"""
   conn = bdd.create_connection(database)
   verifs.verif_rayon_existe(conn, document.idrayon)
   document_id = bdd.create_document(conn, (document.titre, document.disponible, document.idrayon))
+  if document.liencouverture != None:
+    bdd.update_info_document(conn, document_id, "liencouverture", document.liencouverture)
   if document.description != None:
     bdd.update_info_document(conn, document_id, "description", document.description)
   if document.auteur != None:
@@ -67,6 +75,7 @@ def create_document(document: classes.Document):
 
 @app.post("/document/{idDoc}/add_genre")
 def add_genre_to_document(idDoc: int, idGenre: str):
+  """Attribuer un genre à un document depuis leurs identifiants"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   verifs.verif_genre_existe(conn, idGenre)
@@ -75,6 +84,7 @@ def add_genre_to_document(idDoc: int, idGenre: str):
 
 @app.post("/document/{idDoc}/add_theme")
 def add_theme_to_document(idDoc: int, idTheme: str):
+  """Attribuer un thème à un document depuis leurs identifiants"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   verifs.verif_theme_existe(conn, idTheme)
@@ -83,12 +93,15 @@ def add_theme_to_document(idDoc: int, idTheme: str):
 
 @app.put("/document/{idDoc}/update")
 def update_document(idDoc: int, document: classes.UpdateDocument):
+  """Modifier des informations sur un document via son ID, tout est facultatif"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   if document.idrayon != None:
     verifs.verif_rayon_existe(document.idrayon)
   if document.titre != None:
     document_id = bdd.update_info_document(conn, idDoc, "titre", document.titre)
+  if document.liencouverture != None:
+    bdd.update_info_document(conn, document_id, "liencouverture", document.liencouverture)
   if document.auteur != None:
     document_id = bdd.update_info_document(conn, idDoc, "auteur", document.auteur)
   if document.disponible != None:
@@ -98,6 +111,7 @@ def update_document(idDoc: int, document: classes.UpdateDocument):
 
 @app.delete("/document/{idDoc}/delete")
 def delete_document(idDoc: int):
+  """Supprimer un document via son ID"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   bdd.delete_document(conn, idDoc)
