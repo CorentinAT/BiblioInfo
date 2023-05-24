@@ -236,27 +236,6 @@ def main():
     create_table(conn, sql_create_note_table)
     create_table(conn, sql_create_definit_genre_table)
     create_table(conn, sql_create_definit_theme_table)
-
-    # Partie tests, sera supprimée une fois la structure de la bd terminée
-    create_rayon(conn, ("RA", "Rayon1", 4))
-
-    create_document(conn, ("Dodocucu", True, "RA"))
-    create_document(conn, ("Dodocucu", True, "RA"))
-    create_document(conn, ("Dodocucu", True, "RA"))
-    create_document(conn, ("Dodocucu", True, "RA"))
-
-    create_genre(conn, ("G1", "Genre1"))
-    create_genre(conn, ("G2", "Genre2"))
-
-    link_document_genre(conn, 2, "G1")
-    link_document_genre(conn, 2, "G2")
-    link_document_genre(conn, 3, "G1")
-
-    create_note(conn, (4, 2))
-    create_note(conn, (2, 2))
-
-    select_document_by_id(conn, 3)
-    # Fin de la partie tests
   else:
     print("Error, can't create the database connection")
 
