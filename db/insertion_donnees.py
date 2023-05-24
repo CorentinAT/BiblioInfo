@@ -192,3 +192,5 @@ bdd.update_info_document(conn, document_id, "auteur", "Umberto Eco")
 document_id = bdd.create_document(conn, ("Le Parfum", True, "FICT"))
 bdd.update_info_document(conn, document_id, "description", "L'histoire d'un homme doté d'un sens olfactif extraordinaire qui recherche le parfum ultime en utilisant des méthodes sinistres.")
 bdd.update_info_document(conn, document_id, "auteur", "Patrick Süskind")
+
+bdd.link_document_genre(conn, 1, "FICT")

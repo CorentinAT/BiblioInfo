@@ -89,8 +89,11 @@ def select_document_by_id(conn, idDoc):
   row = cur.fetchall()
   return row[0]
 
-def select_document_by_title(conn, titre):
-  sql = f"SELECT * FROM Document WHERE LOWER(titre) LIKE '%{titre.lower()}%'"
+def select_documents_by_title_and_genres(conn, titre, idsGenres):
+  sql = f"SELECT d.* FROM Document d LEFT JOIN DefinitGenre dg ON d.id = dg.iddoc WHERE LOWER(d.titre) LIKE '%{titre.lower()}%'"
+  if idsGenres != []:
+    print(idsGenres)
+    sql += f" GROUP BY d.id HAVING COUNT(DISTINCT dg.idgenre) = {len(idsGenres)}"
   cur = conn.cursor()
   cur.execute(sql)
   row = cur.fetchall()
