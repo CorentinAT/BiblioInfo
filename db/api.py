@@ -28,7 +28,7 @@ def get_document_by_id(idDoc: int):
 
 @app.get("/search_documents_by_title_genres")
 def get_documents_by_title_and_genres(titre: str, idsGenres: list = Query(default=[], alias="idGenre")):
-  """Récupère les documents contenants le(s) mot(s)-clé(s) donné(s) et ayant comme genre(s) le(s) genre(s) donné(s)"""
+  """Renvoie les documents contenants le(s) mot(s)-clé(s) donné(s) et ayant comme genre(s) le(s) genre(s) donné(s)"""
   conn = bdd.create_connection(database)
   for idGenre in idsGenres:
     verifs.verif_genre_existe(conn, idGenre)
@@ -37,7 +37,7 @@ def get_documents_by_title_and_genres(titre: str, idsGenres: list = Query(defaul
 
 @app.get("/genres")
 def get_liste_genres():
-  """Récupère la liste de l'ensemble des genres de la bibliothèque"""
+  """Renvoie la liste de l'ensemble des genres de la bibliothèque"""
   conn = bdd.create_connection(database)
   listegenres = bdd.select_all_genres(conn)
   listegenres = classes.to_object_liste_genres(listegenres)
@@ -45,7 +45,7 @@ def get_liste_genres():
 
 @app.get("/themes")
 def get_liste_themes():
-  """Récupère la liste de l'ensemble des thèmes de la bibliothèque"""
+  """Renvoie la liste de l'ensemble des thèmes de la bibliothèque"""
   conn = bdd.create_connection(database)
   listethemes = bdd.select_all_themes(conn)
   listethemes = classes.to_object_liste_themes(listethemes)
@@ -53,7 +53,7 @@ def get_liste_themes():
 
 @app.post("/create_note")
 def create_note(note : classes.Note):
-  """Créer une note (de 0 à 5) attribuée à un document via son ID"""
+  """Créer une note (de 0 à 5) attribuée à un document via son ID, renvoie l'ID de la note"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, note.iddoc)
   if note.note<0 or note.note>5:
@@ -63,7 +63,7 @@ def create_note(note : classes.Note):
 
 @app.post("/create_document")
 def create_document(document: classes.Document):
-  """Créer un document, l'id est créé automatiquement, liencouverture, auteur et description facultatif"""
+  """Créer un document, l'id est créé automatiquement, liencouverture, auteur et description facultatif, renvoie l'id du document"""
   conn = bdd.create_connection(database)
   verifs.verif_rayon_existe(conn, document.idrayon)
   document_id = bdd.create_document(conn, (document.titre, document.disponible, document.idrayon))
@@ -81,8 +81,7 @@ def add_genre_to_document(idDoc: int, idGenre: str):
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   verifs.verif_genre_existe(conn, idGenre)
-  link_id = bdd.link_document_genre(conn, idDoc, idGenre)
-  return link_id
+  bdd.link_document_genre(conn, idDoc, idGenre)
 
 @app.post("/document/{idDoc}/add_theme")
 def add_theme_to_document(idDoc: int, idTheme: str):
@@ -90,12 +89,11 @@ def add_theme_to_document(idDoc: int, idTheme: str):
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   verifs.verif_theme_existe(conn, idTheme)
-  link_id = bdd.link_document_theme(conn, idDoc, idTheme)
-  return link_id
+  bdd.link_document_theme(conn, idDoc, idTheme)
 
 @app.put("/document/{idDoc}/update")
 def update_document(idDoc: int, document: classes.UpdateDocument):
-  """Modifier des informations sur un document via son ID, tout est facultatif"""
+  """Modifier des informations sur un document via son ID, tout est facultatif, renvoie l'id du document"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   if document.idrayon != None:
