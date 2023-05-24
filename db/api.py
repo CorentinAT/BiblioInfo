@@ -66,11 +66,11 @@ def add_genre_to_document(idDoc: int, idGenre: str):
   return link_id
 
 @app.post("/document/{idDoc}/add_theme")
-def add_genre_to_document(idDoc: int, idTheme: str):
+def add_theme_to_document(idDoc: int, idTheme: str):
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   verifs.verif_theme_existe(conn, idTheme)
-  link_id = bdd.link_document_genre(conn, idDoc, idTheme)
+  link_id = bdd.link_document_theme(conn, idDoc, idTheme)
   return link_id
 
 @app.put("/document/{idDoc}/update")
