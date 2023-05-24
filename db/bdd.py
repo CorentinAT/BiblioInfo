@@ -44,9 +44,9 @@ def create_document(conn, document):
   cur.execute(sql)
   idMax = cur.fetchall()[0][0]
   if(idMax == None):
-    sql = "INSERT INTO Document (id, titre, liencouverture, disponible, idrayon) VALUES (1, ?, ?, ?, ?)"
+    sql = "INSERT INTO Document (id, titre, disponible, idrayon) VALUES (1, ?, ?, ?)"
   else:
-    sql = "INSERT INTO Document (id, titre, liencouverture, disponible, idrayon) VALUES (?, ?, ?, ?, ?)"
+    sql = "INSERT INTO Document (id, titre, disponible, idrayon) VALUES (?, ?, ?, ?)"
     document = (idMax + 1,) + document
   cur = conn.cursor()
   cur.execute(sql, document)
@@ -195,7 +195,7 @@ def main():
   sql_create_document_table = """
   CREATE TABLE IF NOT EXISTS Document (
     id INT PRIMARY KEY,
-    liencourverture VARCHAR,
+    liencouverture VARCHAR,
     titre VARCHAR NOT NULL,
     description TEXT,
     auteur VARCHAR,

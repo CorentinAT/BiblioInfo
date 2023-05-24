@@ -56,6 +56,8 @@ def create_note(note : classes.Note):
   """Créer une note (de 0 à 5) attribuée à un document via son ID"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, note.iddoc)
+  if note.note<0 or note.note>5:
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="La note doit être entre 0 et 5 (inclus)")
   note_id = bdd.create_note(conn, (note.note, note.iddoc))
   return note_id
 
