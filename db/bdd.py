@@ -89,6 +89,20 @@ def select_document_by_id(conn, idDoc):
   row = cur.fetchall()
   return row[0]
 
+def select_genre_by_id(conn, idGenre):
+  sql = "SELECT * FROM Genre WHERE idgenre = ?"
+  cur = conn.cursor()
+  cur.execute(sql, (idGenre,))
+  row = cur.fetchall()
+  return row[0]
+
+def select_theme_by_id(conn, idTheme):
+  sql = "SELECT * FROM Theme WHERE idtheme = ?"
+  cur = conn.cursor()
+  cur.execute(sql, (idTheme,))
+  row = cur.fetchall()
+  return row[0]
+
 def select_note_avg_doc(conn, idDoc):
   sql = "SELECT AVG(note) FROM Note WHERE iddoc = ?;"
   cur = conn.cursor()
@@ -135,6 +149,18 @@ def update_info_document(conn, idDoc, info, donnee):
   sql = f"UPDATE Document SET {info}=? WHERE id=?;"
   cur = conn.cursor()
   cur.execute(sql, (donnee, idDoc,))
+  conn.commit()
+
+def delete_document(conn, idDoc):
+  sql = "DELETE FROM Document WHERE id = ?;"
+  cur = conn.cursor()
+  cur.execute(sql, (idDoc,))
+  conn.commit()
+
+def delete_note_from_document(conn, idDoc):
+  sql = "DELETE FROM Note WHERE iddoc = ?"
+  cur = conn.cursor()
+  cur.execute(sql, (idDoc,))
   conn.commit()
 
 def main():
