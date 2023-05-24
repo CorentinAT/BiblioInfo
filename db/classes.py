@@ -31,14 +31,6 @@ class Note(BaseModel):
   note: int
   iddoc: int
 
-class DefinitGenre(BaseModel):
-  iddoc: int
-  idgenre: str
-
-class DefinitTheme(BaseModel):
-  iddoc: int
-  idtheme: str
-
 class ListeGenres(BaseModel):
   listegenres: list
 
@@ -82,14 +74,6 @@ def to_object_theme(theme)->Theme:
 def to_object_note(note)->Note:
   objNote = Note(note=note[1], iddoc=note[2])
   return objNote
-
-def to_object_genre(genre)->Genre:
-  objGenre = Genre(idgenre=genre[0], nomgenre=genre[1])
-  return objGenre
-
-def to_object_theme(theme)->Theme:
-  objTheme = Theme(idtheme=theme[0], nomtheme=theme[1])
-  return objTheme
 
 def to_object_liste_genres(listegenres)->ListeGenres:
   objListeGenres = ListeGenres(listegenres=[])

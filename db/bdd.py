@@ -167,12 +167,6 @@ def delete_document(conn, idDoc):
   cur.execute(sql, (idDoc,))
   conn.commit()
 
-def delete_note_from_document(conn, idDoc):
-  sql = "DELETE FROM Note WHERE iddoc = ?"
-  cur = conn.cursor()
-  cur.execute(sql, (idDoc,))
-  conn.commit()
-
 def main():
   database = r"bdd.db"
 
