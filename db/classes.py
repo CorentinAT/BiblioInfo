@@ -91,10 +91,6 @@ def to_object_theme(theme)->Theme:
   objTheme = Theme(idtheme=theme[0], nomtheme=theme[1])
   return objTheme
 
-# def to_object_note_moyenne(notemoyenne)->NoteMoyenne:
-#   objNoteMoyenne = NoteMoyenne(notemoyenne=notemoyenne)
-#   return objNoteMoyenne
-
 def to_object_liste_genres(listegenres)->ListeGenres:
   objListeGenres = ListeGenres(listegenres=[])
   for genre in listegenres:
