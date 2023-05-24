@@ -89,6 +89,13 @@ def select_document_by_id(conn, idDoc):
   row = cur.fetchall()
   return row[0]
 
+def select_document_by_title(conn, titre):
+  sql = f"SELECT * FROM Document WHERE LOWER(titre) LIKE '%{titre.lower()}%'"
+  cur = conn.cursor()
+  cur.execute(sql)
+  row = cur.fetchall()
+  return row
+
 def select_genre_by_id(conn, idGenre):
   sql = "SELECT * FROM Genre WHERE idgenre = ?"
   cur = conn.cursor()

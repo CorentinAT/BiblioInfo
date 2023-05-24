@@ -25,6 +25,12 @@ def get_document_by_id(idDoc: int):
   documentComplet = classes.to_object_document_complet(document, rayon, note_moyenne, listegenres, listethemes)
   return documentComplet
 
+@app.get("/search_documents")
+def get_documents_by_title(titre: str):
+  conn = bdd.create_connection(database)
+  documents = bdd.select_document_by_title(conn, titre)
+  return documents
+
 @app.get("/genres")
 def get_liste_genres():
   conn = bdd.create_connection(database)
