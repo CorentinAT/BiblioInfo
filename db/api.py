@@ -126,7 +126,7 @@ def update_document(idDoc: int, document: classes.UpdateDocument):
 
 @app.delete("/document/{idDoc}/delete")
 def delete_document(idDoc: int):
-  """Supprimer un document via son ID"""
+  """Supprimer un document via son ID et toutes les notes liées à ce document"""
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   bdd.delete_document(conn, idDoc)

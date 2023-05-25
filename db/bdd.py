@@ -196,6 +196,7 @@ def delete_document(conn, idDoc):
   conn.commit()
 
 def delete_note_from_document(conn, idDoc):
+  """Supprime toutes les notes liées à un document d'ID idDoc"""
   sql = "DELETE FROM Note WHERE iddoc = ?"
   cur = conn.cursor()
   cur.execute(sql, (idDoc,))
