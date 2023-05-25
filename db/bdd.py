@@ -182,7 +182,7 @@ def update_info_document(conn, idDoc, info, donnee):
   """Met à jour dans la bdd l'information info(str), avec la valeur 'donnee' pour le document ayant comme identifiant idDoc"""
   sql = f"UPDATE Document SET {info}=? WHERE id=?;"
   cur = conn.cursor()
-  cur.execute(sql, (donnee, idDoc,))
+  cur.execute(sql, (donnee, idDoc))
   conn.commit()
 
 def delete_document(conn, idDoc):
@@ -222,7 +222,7 @@ def main():
   sql_create_document_table = """
   CREATE TABLE IF NOT EXISTS Document (
     id INT PRIMARY KEY,
-    titre VARCHAR NOT NULL,
+    titre VARCHAR(300) NOT NULL,
     liencouverture VARCHAR,
     description TEXT,
     auteur VARCHAR,

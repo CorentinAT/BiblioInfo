@@ -81,5 +81,5 @@ def to_object_note(note)->Note:
 
 def to_object_document_complet(document: Document, rayon: Rayon, note_moyenne: float, listegenres: list[Genre], listethemes: list[Theme])->DocumentComplet:
   """Assemble des objets Document, Rayon, ListeGenres, ListeThemes et une note moyenne (float) en un objet DocumentComplet"""
-  objDocumentComplet = DocumentComplet(titre=document.titre, description=document.description, auteur=document.auteur, disponible=document.disponible, rayon=rayon, note_moyenne=note_moyenne, genres=listegenres, themes=listethemes)
+  objDocumentComplet = DocumentComplet(titre=document.titre, liencouverture=document.liencouverture, description=document.description, auteur=document.auteur, disponible=document.disponible, rayon=rayon, note_moyenne=note_moyenne, genres=listegenres, themes=listethemes)
   return objDocumentComplet
