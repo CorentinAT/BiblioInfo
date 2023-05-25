@@ -221,8 +221,8 @@ def main():
   sql_create_document_table = """
   CREATE TABLE IF NOT EXISTS Document (
     id INT PRIMARY KEY,
-    liencouverture VARCHAR,
     titre VARCHAR NOT NULL,
+    liencouverture VARCHAR,
     description TEXT,
     auteur VARCHAR,
     disponible LOGICAL NOT NULL,

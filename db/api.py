@@ -20,9 +20,11 @@ def get_document_by_id(idDoc: int):
   rayon = bdd.select_rayon_by_id(conn, document.idrayon)
   rayon = classes.to_object_rayon(rayon)
   listegenres = bdd.select_genres_document(conn, idDoc)
-  listegenres = classes.to_object_liste_genres(listegenres)
+  for i in range (len(listegenres)):
+    listegenres[i] = classes.to_object_genre(listegenres[i])
   listethemes = bdd.select_themes_document(conn, idDoc)
-  listethemes = classes.to_object_liste_themes(listethemes)
+  for i in range (len(listethemes)):
+    listethemes[i] = classes.to_object_theme(listethemes[i])
   documentComplet = classes.to_object_document_complet(document, rayon, note_moyenne, listegenres, listethemes)
   return documentComplet
 
@@ -40,7 +42,8 @@ def get_liste_genres():
   """Renvoie la liste de l'ensemble des genres de la bibliothèque"""
   conn = bdd.create_connection(database)
   listegenres = bdd.select_all_genres(conn)
-  listegenres = classes.to_object_liste_genres(listegenres)
+  for i in range (len(listegenres)):
+    listegenres[i] = classes.to_object_genre(listegenres[i])
   return listegenres
 
 @app.get("/themes")
@@ -48,7 +51,8 @@ def get_liste_themes():
   """Renvoie la liste de l'ensemble des thèmes de la bibliothèque"""
   conn = bdd.create_connection(database)
   listethemes = bdd.select_all_themes(conn)
-  listethemes = classes.to_object_liste_themes(listethemes)
+  for i in range (len(listethemes)):
+    listethemes[i] = classes.to_object_theme(listethemes[i])
   return listethemes
 
 @app.get("/rayons")

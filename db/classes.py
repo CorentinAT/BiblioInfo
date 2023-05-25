@@ -34,15 +34,9 @@ class Note(BaseModel):
   note: int
   iddoc: int
 
-class ListeGenres(BaseModel):
-  listegenres: list
-
 class Genre(BaseModel):
   idgenre: str
   nomgenre: str
-
-class ListeThemes(BaseModel):
-  listethemes: list
 
 class Theme(BaseModel):
   idtheme: str
@@ -56,12 +50,13 @@ class DocumentComplet(BaseModel):
   disponible: bool
   rayon: Rayon
   note_moyenne: float
-  themes: ListeThemes
-  genres: ListeGenres
+  themes: list[Theme]
+  genres: list[Genre]
 
 # Fonctions pour passer les données récupérées dans la base en objets et pouvoir les traiter et renvoyer dans l'api
 def to_object_document(document)->Document:
   """Convertit une liste d'attributs en un objet Document"""
+  print(document)
   objDoc = Document(titre=document[1], liencouverture=document[2], description=document[3], auteur=document[4], disponible=document[5], idrayon=document[6])
   return objDoc
 
@@ -85,25 +80,7 @@ def to_object_note(note)->Note:
   objNote = Note(note=note[1], iddoc=note[2])
   return objNote
 
-def to_object_liste_genres(listegenres)->ListeGenres:
-  """Convertit une liste d'attributs en objets Genre, et le tout en un objet ListeGenres"""
-  objListeGenres = ListeGenres(listegenres=[])
-  for genre in listegenres:
-    if genre!=():
-      genre = to_object_genre(genre)
-      objListeGenres.listegenres.append(genre)
-  return objListeGenres
-
-def to_object_liste_themes(listethemes)->ListeThemes:
-  """Convertit une liste d'attributs en objets Theme, et le tout en un objet ListeThemes"""
-  objListeThemes = ListeThemes(listethemes=[])
-  for theme in listethemes:
-    if themes!=():
-      theme = to_object_theme(theme)
-      objListeTheme.listethemes.append(theme)
-  return objListeThemes
-
-def to_object_document_complet(document: Document, rayon: Rayon, note_moyenne: float, listegenres: ListeGenres, listethemes:ListeThemes)->DocumentComplet:
+def to_object_document_complet(document: Document, rayon: Rayon, note_moyenne: float, listegenres: list[Genre], listethemes: list[Theme])->DocumentComplet:
   """Assemble des objets Document, Rayon, ListeGenres, ListeThemes et une note moyenne (float) en un objet DocumentComplet"""
   objDocumentComplet = DocumentComplet(titre=document.titre, description=document.description, auteur=document.auteur, disponible=document.disponible, rayon=rayon, note_moyenne=note_moyenne, genres=listegenres, themes=listethemes)
   return objDocumentComplet
