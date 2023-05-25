@@ -30,7 +30,7 @@ def get_document_by_id(idDoc: int):
 
 @app.get("/search_documents_by_title_genres")
 def get_documents_by_title_and_genres(titre: str, doitEtreDispo: bool, idsGenres: list = Query(default=[], alias="idGenre")):
-  """Renvoie les documents contenants le(s) mot(s)-clé(s) donné(s) et ayant comme genre(s) le(s) genre(s) donné(s)"""
+  """Renvoie les documents contenants le(s) mot(s)-clé(s) donné(s) et ayant comme genre(s) le(s) genre(s) donné(s), si doitEtreDispo est à True, renvoie uniquement les documents disponibles"""
   conn = bdd.create_connection(database)
   for idGenre in idsGenres:
     verifs.verif_genre_existe(conn, idGenre)
