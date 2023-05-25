@@ -34,11 +34,7 @@ bdd.create_theme(conn, ("FANT", "Fantaisie"))
 bdd.create_theme(conn, ("HUM", "Humour"))
 bdd.create_theme(conn, ("MYST", "Mystère"))
 bdd.create_theme(conn, ("SOC", "Société"))
-<<<<<<< HEAD
 bdd.create_theme(conn, ("CULT", "Culture"))
-=======
-bdd.create_theme(conn, ("CUL", "Culture"))
->>>>>>> ee322fcb2f9666555a84f2953b7715d36da83c2d
 bdd.create_theme(conn, ("VOY", "Voyage"))
 bdd.create_theme(conn, ("IDENT", "Identité"))
 bdd.create_theme(conn, ("RELIG", "Religion"))
