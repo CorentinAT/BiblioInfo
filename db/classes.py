@@ -3,6 +3,7 @@ from typing import Optional
 
 # Classes qui correspondent aux tables de la base de données pour pouvoir traiter et renvoyer les données
 class Document(BaseModel):
+  id: int
   titre: str
   liencouverture: Optional[str] = None
   description: Optional[str] = None
@@ -43,6 +44,7 @@ class Theme(BaseModel):
   nomtheme: str
 
 class DocumentComplet(BaseModel):
+  id: int
   titre: str
   liencouverture: Optional[str] = None
   description: Optional[str] = None
@@ -56,7 +58,7 @@ class DocumentComplet(BaseModel):
 # Fonctions pour passer les données récupérées dans la base en objets et pouvoir les traiter et renvoyer dans l'api
 def to_object_document(document)->Document:
   """Convertit une liste d'attributs en un objet Document"""
-  objDoc = Document(titre=document[1], liencouverture=document[2], description=document[3], auteur=document[4], disponible=document[5], idrayon=document[6])
+  objDoc = Document(id=document[0], titre=document[1], liencouverture=document[2], description=document[3], auteur=document[4], disponible=document[5], idrayon=document[6])
   return objDoc
 
 def to_object_rayon(rayon)->Rayon:
@@ -81,5 +83,5 @@ def to_object_note(note)->Note:
 
 def to_object_document_complet(document: Document, rayon: Rayon, note_moyenne: float, listegenres: list[Genre], listethemes: list[Theme])->DocumentComplet:
   """Assemble des objets Document, Rayon, ListeGenres, ListeThemes et une note moyenne (float) en un objet DocumentComplet"""
-  objDocumentComplet = DocumentComplet(titre=document.titre, liencouverture=document.liencouverture, description=document.description, auteur=document.auteur, disponible=document.disponible, rayon=rayon, note_moyenne=note_moyenne, genres=listegenres, themes=listethemes)
+  objDocumentComplet = DocumentComplet(id=document.id, titre=document.titre, liencouverture=document.liencouverture, description=document.description, auteur=document.auteur, disponible=document.disponible, rayon=rayon, note_moyenne=note_moyenne, genres=listegenres, themes=listethemes)
   return objDocumentComplet
