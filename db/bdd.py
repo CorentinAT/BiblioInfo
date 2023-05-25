@@ -95,12 +95,15 @@ def select_document_by_id(conn, idDoc):
   return row[0]
 
 def select_documents_by_title_and_genres(conn, titre, doitEtreDispo, idsGenres):
-  """Renvoie les informations des documents qui ont comme genres les genres qui ont les idsGenres donnés (facultatif, liste de str, 0 à *), et qui contiennent la chaîne de caractère titre dans leur titre, si doitEtreDispo est à True, renvoie uniquement les documents disponibles"""
+  """Renvoie les informations des documents qui ont comme genres les genres qui ont un des idsGenres donnés (facultatif, liste de str, 0 à *), et qui contiennent la chaîne de caractère titre dans leur titre, si doitEtreDispo est à True, renvoie uniquement les documents disponibles"""
   sql = f"SELECT d.* FROM Document d LEFT JOIN DefinitGenre dg ON d.id = dg.iddoc WHERE LOWER(d.titre) LIKE '%{titre.lower()}%'"
   if doitEtreDispo == True:
     sql += " AND disponible = True"
   if idsGenres != []:
-    sql += f" GROUP BY d.id HAVING COUNT(DISTINCT dg.idgenre) = {len(idsGenres)}"
+    sql += f" AND (dg.idgenre='{idsGenres[0]}'"
+    for i in range(1, len(idsGenres)):
+      sql += f" OR dg.idgenre='{idsGenres[i]}'"
+    sql += ");"
   cur = conn.cursor()
   cur.execute(sql)
   row = cur.fetchall()
@@ -188,6 +191,13 @@ def update_info_document(conn, idDoc, info, donnee):
 def delete_document(conn, idDoc):
   """Supprime de la base le document d'id idDoc"""
   sql = "DELETE FROM Document WHERE id = ?;"
+  cur = conn.cursor()
+  cur.execute(sql, (idDoc,))
+  conn.commit()
+
+def delete_note_from_document(conn, idDoc):
+  """Supprime toutes les notes liées à un document d'ID idDoc"""
+  sql = "DELETE FROM Note WHERE iddoc = ?"
   cur = conn.cursor()
   cur.execute(sql, (idDoc,))
   conn.commit()
