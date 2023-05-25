@@ -51,6 +51,15 @@ def get_liste_themes():
   listethemes = classes.to_object_liste_themes(listethemes)
   return listethemes
 
+@app.get("/rayons")
+def get_liste_rayons():
+  """Renvoie la liste de l'ensemble des rayons de la bibliothèque"""
+  conn = bdd.create_connection(database)
+  listerayons = bdd.select_all_rayons(conn)
+  for i in range (len(listerayons)):
+    listerayons[i] = classes.to_object_rayon(listerayons[i])
+  return listerayons
+
 @app.post("/create_note")
 def create_note(note : classes.Note):
   """Créer une note (de 0 à 5) attribuée à un document via son ID, renvoie l'ID de la note"""

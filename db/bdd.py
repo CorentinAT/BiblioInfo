@@ -153,6 +153,14 @@ def select_all_themes(conn):
   row = cur.fetchall()
   return row
 
+def select_all_rayons(conn):
+  """Renvoie tous les rayons de la base de données"""
+  sql = "SELECT * FROM Rayon;"
+  cur = conn.cursor()
+  cur.execute(sql)
+  row = cur.fetchall()
+  return row
+
 def select_genres_document(conn, idDoc):
   """Renvoie tous les genres du document dont l'id est donné"""
   sql = "SELECT g.idgenre, g.nomgenre FROM Genre g JOIN DefinitGenre dg ON g.idgenre=dg.idgenre WHERE dg.iddoc=?;"
