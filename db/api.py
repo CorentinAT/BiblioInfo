@@ -35,6 +35,8 @@ def get_documents_by_title_and_genres(titre: str, doitEtreDispo: bool, idsGenres
   for idGenre in idsGenres:
     verifs.verif_genre_existe(conn, idGenre)
   documents = bdd.select_documents_by_title_and_genres(conn, titre, doitEtreDispo, idsGenres)
+  for i in range (len(documents)):
+    documents[i] = classes.to_object_document(documents[i])
   return documents
 
 @app.get("/genres")
