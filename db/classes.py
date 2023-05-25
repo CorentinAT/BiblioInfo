@@ -56,7 +56,6 @@ class DocumentComplet(BaseModel):
 # Fonctions pour passer les données récupérées dans la base en objets et pouvoir les traiter et renvoyer dans l'api
 def to_object_document(document)->Document:
   """Convertit une liste d'attributs en un objet Document"""
-  print(document)
   objDoc = Document(titre=document[1], liencouverture=document[2], description=document[3], auteur=document[4], disponible=document[5], idrayon=document[6])
   return objDoc
 

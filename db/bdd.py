@@ -94,11 +94,12 @@ def select_document_by_id(conn, idDoc):
   row = cur.fetchall()
   return row[0]
 
-def select_documents_by_title_and_genres(conn, titre, idsGenres):
+def select_documents_by_title_and_genres(conn, titre, doitEtreDispo, idsGenres):
   """Renvoie les informations des documents qui ont comme genres les genres qui ont les idsGenres donnés (facultatif, liste de str, 0 à *), et qui contiennent la chaîne de caractère titre dans leur titre"""
   sql = f"SELECT d.* FROM Document d LEFT JOIN DefinitGenre dg ON d.id = dg.iddoc WHERE LOWER(d.titre) LIKE '%{titre.lower()}%'"
+  if doitEtreDispo == True:
+    sql += " AND disponible = True"
   if idsGenres != []:
-    print(idsGenres)
     sql += f" GROUP BY d.id HAVING COUNT(DISTINCT dg.idgenre) = {len(idsGenres)}"
   cur = conn.cursor()
   cur.execute(sql)

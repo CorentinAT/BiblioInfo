@@ -29,12 +29,12 @@ def get_document_by_id(idDoc: int):
   return documentComplet
 
 @app.get("/search_documents_by_title_genres")
-def get_documents_by_title_and_genres(titre: str, idsGenres: list = Query(default=[], alias="idGenre")):
+def get_documents_by_title_and_genres(titre: str, doitEtreDispo: bool, idsGenres: list = Query(default=[], alias="idGenre")):
   """Renvoie les documents contenants le(s) mot(s)-clé(s) donné(s) et ayant comme genre(s) le(s) genre(s) donné(s)"""
   conn = bdd.create_connection(database)
   for idGenre in idsGenres:
     verifs.verif_genre_existe(conn, idGenre)
-  documents = bdd.select_documents_by_title_and_genres(conn, titre, idsGenres)
+  documents = bdd.select_documents_by_title_and_genres(conn, titre, doitEtreDispo, idsGenres)
   return documents
 
 @app.get("/genres")
