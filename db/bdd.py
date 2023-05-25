@@ -100,7 +100,10 @@ def select_documents_by_title_and_genres(conn, titre, doitEtreDispo, idsGenres):
   if doitEtreDispo == True:
     sql += " AND disponible = True"
   if idsGenres != []:
-    sql += f" GROUP BY d.id HAVING COUNT(DISTINCT dg.idgenre) = {len(idsGenres)}"
+    sql += f" AND (dg.idgenre='{idsGenres[0]}'"
+    for i in range(1, len(idsGenres)):
+      sql += f" OR dg.idgenre='{idsGenres[i]}'"
+    sql += ");"
   cur = conn.cursor()
   cur.execute(sql)
   row = cur.fetchall()
