@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Path, Query, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 import bdd
 import classes
 import verifs
