@@ -5,6 +5,11 @@ import verifs
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"]
+)
+
 database = r"bdd.db"
 
 @app.get("/document/{idDoc}")
