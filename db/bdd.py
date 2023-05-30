@@ -202,6 +202,20 @@ def delete_note_from_document(conn, idDoc):
   cur.execute(sql, (idDoc,))
   conn.commit()
 
+def delete_genres_from_document(conn, idDoc):
+  """Supprime toutes les liaisons de genres au document d'ID donné"""
+  sql = "DELETE FROM DefinitGenre WHERE iddoc = ?"
+  cur = conn.cursor()
+  cur.execute(sql, (idDoc,))
+  conn.commit()
+
+def delete_themes_from_document(conn, idDoc):
+  """Supprime toutes les liaisons de thèmes au document d'ID donné"""
+  sql = "DELETE FROM DefinitTheme WHERE iddoc = ?"
+  cur = conn.cursor()
+  cur.execute(sql, (idDoc,))
+  conn.commit()
+
 def main():
   """Création de la base de données et des tables"""
   database = r"bdd.db"
