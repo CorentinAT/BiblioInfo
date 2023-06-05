@@ -7,63 +7,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Brume des Bois</title>
     <link rel="shortcut icon" href="./scr/Images/logo2.png" type="image/x-icon">
+
 </head>
 
 <body>
-    <h1 class="titre">Titre</h1>
+    <h1 id="titre"></h1>
 
     <div>
         <h3>Auteur : </h3>
-        <h3 class="auteur">null</h3>
+        <h3 id="auteur"></h3>
     </div>
 
     <div>
         <h3>Synopsis :</h3>
-        <h3 class="synopsis">null</h3>
+        <h3 id="synopsis"></h3>
     </div>
 
     <div>
         <h3>Genres :</h3>
-        <h3 class="genres">null</h3>
+        <h3 id="genres"></h3>
     </div>
 
     <div>
         <h3>Thèmes :</h3>
-        <h3 class="themes">null</h3>
+        <h3 id="themes"></h3>
     </div>
 
     <div>
-        <h3 class="themes">logo null</h3>
+        <h3 id="disponible"></h3>
         <h3>Disponible </h3>
     </div>
 
     <div>
-        <h2>Déscription complète du document :</h2>
-        <ul class="Description_doc">
-            <li class=" Genre_doc">Genre : xx</li>
-            <li class="Auteur_doc">Auteur : xx</li>
-            <li class="Dessinateur_doc">Dessinateur : xx</li>
-            <li class="Serie_doc">Serie : xx</li>
-            <li class="Illustrateur_doc">Illustrateur : xx</li>
-            <li class="Editeur_doc">Editeur : xx</li>
-            <li class="EdLimite_Doc">Edition limité : O/N</li>
-            <li class="EAN_doc">EAN : xx</li>
-            <li class="ISBN_doc">ISBN : xx</li>
-            <li class="Nb_Page_Doc">Nombre de pages : xx</li>
-            <li class="PublicAverti_Doc">Public averti : O/N</li>
-            <li class="Date_Publi_Doc">Date de publication : XX/XX/XXXX</li>
-
-        </ul>
+        <h3>Rayon </h3>
+        <h3 id="rayon"></h3>
+        <h3 id="etage"></h3>
+        <h3> étage</h3>
     </div>
 
     <div>
-        <img src="./scr/Images/etoile_pleine.png" alt="etoile_pleine" />
-        <img src="./scr/Images/etoile_pleine.png" alt="etoile_pleine" />
-        <img src="./scr/Images/etoile_pleine.png" alt="etoile_pleine" />
-        <img src="./scr/Images/etoile_vide.png" alt="etoile_vide" />
-        <img src="./scr/Images/etoile_vide.png" alt="etoile_vide" />
+        <button>Modifier</button>
+        <button>Supprimer</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>Noter</button>
     </div>
-    <img class="Couverture_Doc" src="./scr/Images/couverture livre exemple.webp" alt="">
+
+
+    <div>
+        <img class="etoile_pleine" src="../img/etoile_pleine.png" alt="" />
+        <img class="etoile_pleine" src="../img/etoile_pleine.png" alt="" />
+        <img class="etoile_pleine" src="../img/etoile_pleine.png" alt="" />
+        <img class="etoile_vide" src="../img/etoile_vide.png" alt="" />
+        <img class="etoile_vide" src="../img/etoile_vide.png" alt="" />
+    </div>
+    <img id="couverture" src="" alt="" height="200" width="auto">
+
+
+
+    <script>// Effectuer la requête AJAX
+        var url = 'http://api.biblioinfo.live/document/5';
+        var request = new XMLHttpRequest();
+        request.open('GET', url, true);
+        request.onload = function () {
+            if (request.status >= 200 && request.status < 400) {
+                // La requête a réussi
+                var response = JSON.parse(request.responseText);
+                var idVal = response.id;
+                var titreVal = response.titre;
+                var liencouvertureVal = response.liencouverture;
+                var descriptionVal = response.description;
+                var auteurVal = response.auteur;
+                var disponibleVal = response.disponible;
+                var rayonVal = response.rayon;
+                var noteMoyenneVal = response.note_moyenne;
+                var themesVal = response.themes;
+                var genresVal = response.genres;
+
+                // Utilisez les variables comme vous le souhaitez
+
+                titre = document.getElementById("titre");
+                titre.textContent = titreVal;
+
+                synopsis = document.getElementById("synopsis");
+                synopsis.textContent = descriptionVal;
+
+                genre = document.getElementById("genres");
+                genre.textContent = genresVal;
+
+                auteur = document.getElementById("auteur");
+                auteur.textContent = auteurVal;
+
+                //theme = document.getElementById("theme");
+                //theme.textContent = themesVal;
+
+                disponible = document.getElementById("disponible");
+                disponible.textContent = disponibleVal;
+
+                rayon = document.getElementById("rayon");
+                rayon.textContent = rayonVal;
+
+                couverture = document.getElementById("couverture");
+                couverture.src = liencouvertureVal;
+
+
+
+
+                console.log(idVal);
+                console.log(titreVal);
+                console.log(liencouvertureVal);
+                console.log(descriptionVal);
+                console.log(auteurVal);
+                console.log(disponibleVal);
+                console.log(rayonVal);
+                console.log(noteMoyenneVal);
+                console.log(themesVal);
+                console.log(genresVal);
+            } else {
+                // La requête a échoué
+                console.error('Erreur lors de la requête. Statut:', request.status);
+            }
+        };
+        request.onerror = function () {
+            // Erreur lors de la requête
+            console.error('Erreur lors de la requête.');
+        };
+        request.send();
+    </script>
+
+
+
 
 </body>
 
