@@ -12,5 +12,64 @@
   <body>
     <div id="overlay"></div>
     <h1>Ajouter un document</h1>
+    <form onSubmit="ajouterDoc(event)">
+      <div class="grille">
+        <div class="partie partiegauche">
+          <div class="champ pluspetit">
+            <label for="titre">Titre<em>*</em></label>
+            <input type="text" id="titre" placeholder="Bel-Ami" required>
+          </div>
+          <div class="champ pluspetit">
+            <label for="auteur">Auteur</label>
+            <input type="text" id="auteur" placeholder="Guy de Maupassant">
+          </div>
+          <div class="champ pluspetit">
+            <label for="rayons">Rayon<em>*</em></label>
+            <select id="rayons"></select>
+          </div>
+          <div class="champ">
+            <label for="description">Description</label>
+            <textarea id="description" rows="6" placeholder="Histoire d'un homme qui..."></textarea>
+          </div>
+          <div class="champ">
+            <label for="liencouverture">Lien vers une image de la courverture</label>
+            <input type="text" id="liencouverture" placeholder="https://...">
+          </div>
+          <div class="champ">
+            <span>Le document est-il disponible ?</span>
+            <fieldset id="disponible">
+              <input type="radio" name="estdispo" id="dispo" value="true" required>
+              <label for="dispo">Oui</label>
+              <input type="radio" name="estdispo" id="pasdispo" value="false">
+              <label for="pasdispo">Non</label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="partie partiedroite">
+          <div class="champ champderoule">
+            <input type="checkbox" id="deroulergenres">
+            <label for="deroulergenres">
+              Genres
+              <span class="boutonderouler derouler-plus">+</span>
+              <span class="boutonderouler derouler-moins">-</span>
+            </label>
+            <fieldset id="genres"></fieldset>
+          </div>
+          <div class="champ champderoule">
+            <input type="checkbox" id="deroulerthemes">
+            <label for="deroulerthemes">
+              Thèmes
+              <span class="boutonderouler derouler-plus">+</span>
+              <span class="boutonderouler derouler-moins">-</span>
+            </label>
+            <fieldset id="themes"></fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="boutons">
+        <a href="test.html?id=36" class="annuler">Annuler</a>
+        <input type="submit" class="ajouter" value="Ajouter">
+      </div>
+    </form>
   </body>
 </html>
