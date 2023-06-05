@@ -8,7 +8,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"]
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 
 database = r"bdd.db"
@@ -83,7 +86,7 @@ def create_note(note : classes.Note):
   return note_id
 
 @app.post("/create_document")
-def create_document(document: classes.Document):
+def create_document(document: classes.UpdateDocument):
   """Créer un document, l'id est créé automatiquement, liencouverture, auteur et description facultatif, renvoie l'id du document"""
   conn = bdd.create_connection(database)
   verifs.verif_rayon_existe(conn, document.idrayon)

@@ -14,6 +14,7 @@ class Document(BaseModel):
 class UpdateDocument(BaseModel):
   titre: Optional[str] = None
   liencouverture: Optional[str] = None
+  description: Optional[str] = None
   auteur: Optional[str] = None
   disponible: Optional[bool] = None
   idrayon: Optional[str] = None
