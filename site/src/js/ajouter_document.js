@@ -98,7 +98,7 @@ function afficherOverlayValidation(idDoc) {
   <div class="case">
     <div class="contenu">
       <p>Document ajouté</p>
-      <a href="test.html?id=${idDoc}"><button>Ok</button></a>
+      <a href="../pages/page_doc.html?id=${idDoc}"><button>Ok</button></a>
     </div>
   </div>
   `;
