@@ -140,3 +140,5 @@ def delete_document(idDoc: int):
   verifs.verif_doc_existe(conn, idDoc)
   bdd.delete_document(conn, idDoc)
   bdd.delete_note_from_document(conn, idDoc)
+  bdd.delete_genres_from_document(conn, idDoc)
+  bdd.delete_themes_from_document(conn, idDoc)
