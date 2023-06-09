@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page avec barre de recherche et header</title>
+
+  <link rel="stylesheet" href="../src/css/all.css">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
+    <link rel="preconnect" href="https://fonts.gstatic.com/" >
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    
+  <style>
+    /* Styles pour le conteneur principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+/*------------------------------------------ HEADER ------------------------------------------------------------ */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(229, 229, 229);
+  width: 100%;
+  height: 55px;;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;                        
+}
+
+/* Styles pour l'image */
+.logo {
+  width: 15%;
+  height: 110%;
+  
+}
+
+/* Styles pour les boutons */
+.button {
+  background-color: rgb(229, 229, 229);
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+
+/* Style pour le contenu du header */
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: white;
+  font-size: 24px;
+}
+/*-------------------------------------------------------------------------------------------------*/
+
+
+    /* Style pour le titre */
+    h1 {
+      margin-top: 100px; /* Espacement entre le titre et la barre de recherche */
+      margin-bottom: 20px; /* Espacement entre le titre et le contenu suivant */
+    }
+
+    /* Style pour la barre de recherche */
+    .search-bar {
+      width: 400px;
+      height: 5vh;
+      padding: 5px;
+      border: 1px solid gray;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin: 5px;
+      background-color: #f5f5f5;
+    }
+
+    /* Style pour l'image */
+    .search-image1 {
+      border: 1px solid gray;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin: 5px;
+      height: 5vh;
+      cursor: pointer;
+    }
+
+    .search-image2 {
+      border: 1px solid gray;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin: 5px;
+      height: 5vh;
+      cursor: pointer;
+      margin-block-end: auto;
+    }
+    
+
+    /* Style pour le formulaire */
+    .form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 10%;
+      margin-top: 10px;
+    }
+
+    /* Style pour la boîte avec bord bleu */
+    .box {
+      border: 2px solid rgb(74, 76, 200);
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
+
+  <script>
+    function showGenres() {
+      var box = document.getElementById("genresBox");
+      box.style.display = "block";
+    }
+  </script>
+
+</head>
+<body>
+
+
+  <header>
+    
+      <div class="header">
+        <img src="../src/img/logo.png" alt="Logo" class="logo">
+        <div>
+          <button class="button">Accueil</button>
+          <button class="button">Rechercher dans la bibliothèque</button>
+          <button class="button">Ajouter un document</button>
+        </div>
+      </div>
+      
+    </div>
+  </header>
+
+
+
+  <div class="container">
+    <h1>Rechercher dans la bibliothèque</h1>
+    <form class="form">
+
+      <input type="checkbox" id="checkboxGenres" class="search-checkbox" onchange="toggleContent()" style="display: none;">
+      <label for="checkboxGenres">
+        <img src="../src/img/filtre.png" class="search-image2">
+      </label>
+
+      <input type="text" class="search-bar" placeholder="Quel document cherchez-vous ?">
+      <input type="image" src="../src/img/loupe.png" alt="Rechercher" class="search-image1">
+    </form>
+    
+    <div id="content" class="box" style="display: none;">
+      <h2>Genres :</h2>
+      <input type="checkbox" id="checkbox1">
+      <label for="checkbox1">Action</label><br>
+      <input type="checkbox" id="checkbox2">
+      <label for="checkbox2">Horreur</label><br>
+      <input type="checkbox" id="checkbox3">
+      <label for="checkbox3">Etc</label><br>
+    </div>
+  </div>
+
+  <script>
+    function toggleContent() {
+      var checkboxGenres = document.getElementById("checkboxGenres");
+      var content = document.getElementById("content");
+      if (checkboxGenres.checked) {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+    
