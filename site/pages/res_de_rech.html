@@ -123,6 +123,12 @@
     }
   </style>
 
+  <script>
+    function showGenres() {
+      var box = document.getElementById("genresBox");
+      box.style.display = "block";
+    }
+  </script>
 
 </head>
 <body>
@@ -148,11 +154,16 @@
     <h1>Rechercher dans la bibliothèque</h1>
     <form class="form">
 
+      <input type="checkbox" id="checkboxGenres" class="search-checkbox" onchange="toggleContent()" style="display: none;">
+      <label for="checkboxGenres">
+        <img src="../src/img/filtre.png" class="search-image2">
+      </label>
+
       <input type="text" class="search-bar" placeholder="Quel document cherchez-vous ?">
       <input type="image" src="../src/img/loupe.png" alt="Rechercher" class="search-image1">
     </form>
     
-    <div id="content" class="box">
+    <div id="content" class="box" style="display: none;">
       <h2>Genres :</h2>
       <input type="checkbox" id="checkbox1">
       <label for="checkbox1">Action</label><br>
@@ -163,7 +174,18 @@
     </div>
   </div>
 
-  
+  <script>
+    function toggleContent() {
+      var checkboxGenres = document.getElementById("checkboxGenres");
+      var content = document.getElementById("content");
+      if (checkboxGenres.checked) {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
+      }
+    }
+  </script>
+
 </body>
 </html>
 
