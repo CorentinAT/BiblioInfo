@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+
     <h1 id="titre"></h1>
 
     <div>
@@ -40,7 +42,7 @@
 
     <div>
         <h3>Rayon </h3>
-        <h3 id="rayon"></h3>
+        <h3 id="rayons"></h3>
         <h3 id="etage"></h3>
         <h3> étage</h3>
     </div>
@@ -56,6 +58,8 @@
         <button>Noter</button>
     </div>
 
+    <div class="vertical-line"></div>
+
 
     <div>
         <img class="etoile_pleine" src="../img/etoile_pleine.png" alt="" />
@@ -69,63 +73,64 @@
 
 
     <script>// Effectuer la requête AJAX
-        var url = 'http://api.biblioinfo.live/document/5';
+        var url = 'http://api.biblioinfo.live/document/11';
         var request = new XMLHttpRequest();
         request.open('GET', url, true);
         request.onload = function () {
+            window.addEventListener('DOMContentLoaded', function () {
+                initialiserListe('http://api.biblioinfo.live/rayons', 'rayons', 'idrayon', 'nomrayon');
+                initialiserListe('http://api.biblioinfo.live/genres', 'genres', 'idgenre', 'nomgenre');
+                initialiserListe('http://api.biblioinfo.live/themes', 'themes', 'idtheme', 'nomtheme');
+            })
             if (request.status >= 200 && request.status < 400) {
-                // La requête a réussi
                 var response = JSON.parse(request.responseText);
-                var idVal = response.id;
-                var titreVal = response.titre;
-                var liencouvertureVal = response.liencouverture;
-                var descriptionVal = response.description;
-                var auteurVal = response.auteur;
-                var disponibleVal = response.disponible;
-                var rayonVal = response.rayon;
-                var noteMoyenneVal = response.note_moyenne;
-                var themesVal = response.themes;
-                var genresVal = response.genres;
 
-                // Utilisez les variables comme vous le souhaitez
+                var idVal = response.id;
+                var noteMoyenneVal = response.note_moyenne;
 
                 titre = document.getElementById("titre");
-                titre.textContent = titreVal;
+                titre.textContent = response.titre;
 
                 synopsis = document.getElementById("synopsis");
-                synopsis.textContent = descriptionVal;
+                synopsis.textContent = response.description;
 
                 genre = document.getElementById("genres");
-                genre.textContent = genresVal;
+                var genreText = response.genres.map(function (genre) {
+                    return genre.nomgenre;
+                }).join(", ");
+                genre.textContent = genreText;
 
                 auteur = document.getElementById("auteur");
-                auteur.textContent = auteurVal;
+                auteur.textContent = response.auteur;
 
-                //theme = document.getElementById("theme");
-                //theme.textContent = themesVal;
+                themes = document.getElementById("themes");
+                var themesText = response.themes.map(function (theme) {
+                    return theme.nomtheme;
+                }).join(", ");
+                themes.textContent = themesText;
 
                 disponible = document.getElementById("disponible");
-                disponible.textContent = disponibleVal;
+                disponible.textContent = response.disponible;
 
-                rayon = document.getElementById("rayon");
-                rayon.textContent = rayonVal;
+                rayons = document.getElementById("rayons");
+                rayons.textContent = response.rayon.nomrayon;
+
+                etage = document.getElementById("etage");
+                etage.textContent = response.rayon.etage;
 
                 couverture = document.getElementById("couverture");
-                couverture.src = liencouvertureVal;
+                couverture.src = response.liencouverture;
 
-
-
-
-                console.log(idVal);
-                console.log(titreVal);
-                console.log(liencouvertureVal);
-                console.log(descriptionVal);
-                console.log(auteurVal);
-                console.log(disponibleVal);
-                console.log(rayonVal);
-                console.log(noteMoyenneVal);
-                console.log(themesVal);
-                console.log(genresVal);
+                //console.log(idVal);
+                //console.log(titreVal);
+                //console.log(liencouvertureVal);
+                //console.log(descriptionVal);
+                //console.log(auteurVal);
+                //console.log(disponibleVal);
+                //console.log(rayonVal);
+                //console.log(noteMoyenneVal);
+                //console.log(themesVal);
+                //console.log(genresVal);
             } else {
                 // La requête a échoué
                 console.error('Erreur lors de la requête. Statut:', request.status);

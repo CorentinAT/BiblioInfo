@@ -1,0 +1,5 @@
+.vertical-line {
+    border-left: 1px solid green;
+    height: 100px;
+    /* Hauteur de la ligne */
+}
