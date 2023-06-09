@@ -7,11 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Brume des Bois</title>
     <link rel="shortcut icon" href="./scr/Images/logo2.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/page_document.css">
+    <link rel="stylesheet" href="../css/all.css">
 
 </head>
 
-<body>
+<header>
+    <div class="header">
+        <img src="../img/logo.png" alt="Logo" class="logo">
+        <div>
+            <button class="button">Accueil</button>
+            <button class="button">Rechercher dans la bibliothèque</button>
+            <button class="button">Ajouter un document</button>
+        </div>
+    </div>
+</header>
 
+<body>
+    <div class="conteneur_gauche">
+        <img id="couverture" src="" alt="" height="200" width="auto">
+        <span>
+            <img id="etoile_pleine" class="note" src="../img/etoile_pleine.png" alt="" />
+            <img id="etoile_pleine" class="note" src="../img/etoile_pleine.png" alt="" />
+            <img id="etoile_pleine" class="note" src="../img/etoile_pleine.png" alt="" />
+            <img id="etoile_vide" class="note" src="../img/etoile_vide.png" alt="" />
+            <img id="etoile_vide" class="note" src="../img/etoile_vide.png" alt="" />
+        </span>
+
+    </div>
+
+    <div class="vertical-line"></div>
 
     <h1 id="titre"></h1>
 
@@ -58,22 +83,12 @@
         <button>Noter</button>
     </div>
 
-    <div class="vertical-line"></div>
 
-
-    <div>
-        <img class="etoile_pleine" src="../img/etoile_pleine.png" alt="" />
-        <img class="etoile_pleine" src="../img/etoile_pleine.png" alt="" />
-        <img class="etoile_pleine" src="../img/etoile_pleine.png" alt="" />
-        <img class="etoile_vide" src="../img/etoile_vide.png" alt="" />
-        <img class="etoile_vide" src="../img/etoile_vide.png" alt="" />
-    </div>
-    <img id="couverture" src="" alt="" height="200" width="auto">
 
 
 
     <script>// Effectuer la requête AJAX
-        var url = 'http://api.biblioinfo.live/document/11';
+        var url = 'http://api.biblioinfo.live/document/12';
         var request = new XMLHttpRequest();
         request.open('GET', url, true);
         request.onload = function () {
@@ -150,8 +165,7 @@
 
 <footer>
     <div>
-        <a target="_blank" href="https://icons8.com/icon/8ggStxqyboK5/%C3%A9toile">Etoiles</a> icon by <a
-            target="_blank" href="https://icons8.com">Icons8</a>
+
     </div>
 </footer>
 
