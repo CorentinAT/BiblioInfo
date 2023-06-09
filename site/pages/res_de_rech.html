@@ -32,10 +32,14 @@
   margin-bottom: 20px;
   padding: 10px;
   color: white;
-  position: fixed;
-  top: 0;
-  left: 0;                        
+  position:sticky;      
+  display: flex;                
 }
+
+body, header {
+      margin: 0;
+      padding: 0;
+    }
 
 /* Styles pour l'image */
 .logo {
@@ -65,13 +69,6 @@
   font-size: 24px;
 }
 /*-------------------------------------------------------------------------------------------------*/
-
-
-    /* Style pour le titre */
-    h1 {
-      margin-top: 100px; /* Espacement entre le titre et la barre de recherche */
-      margin-bottom: 20px; /* Espacement entre le titre et le contenu suivant */
-    }
 
     /* Style pour la barre de recherche */
     .search-bar {
