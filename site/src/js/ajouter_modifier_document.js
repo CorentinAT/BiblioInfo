@@ -1,6 +1,6 @@
 // Fonction pour initialiser les listes de rayons, thèmes et genres sur la page en fonction de ce qu'il y a dans la base de données (via l'api)
 function initialiserListe(url, idListe, idElement, nomElement) {
-  // Requêtre pour récupérer la liste voulue
+  // Requête pour récupérer la liste voulue
   fetch(url, {
     method: 'GET',
     headers: {
@@ -15,7 +15,7 @@ function initialiserListe(url, idListe, idElement, nomElement) {
     for (var i = 0; i < data.length; i++) {
       if(idListe==="rayons") {
         options = options + `
-          <option value=${data[i][idElement]}>${data[i][nomElement]}</option>
+          <option value=${data[i][idElement]} id=${data[i][idElement]}>${data[i][nomElement]}</option>
         `;
       } else {
         options = options + `
@@ -151,9 +151,54 @@ function ajouterDoc(event) {
   });
 }
 
+async function chargerDoc(documentId) {
+  const response = await fetch(`http://api.biblioinfo.live/document/${documentId}`, {
+    method: 'GET',
+    headers: {
+      'accept': 'application/json'
+    }
+  });
+  return await response.json();
+}
+
+async function remplir_input(documentId) {
+  const dataDocument = await chargerDoc(documentId);
+  console.log(dataDocument);
+  let zoneSelectionnee = document.getElementById("titre_page");
+  zoneSelectionnee.innerHTML = "Modifier le document - "+dataDocument.titre;
+  zoneSelectionnee = document.getElementById("titre");
+  zoneSelectionnee.value = dataDocument.titre;
+  if(dataDocument.auteur) {
+    zoneSelectionnee = document.getElementById("auteur");
+    zoneSelectionnee.value = dataDocument.auteur;
+  }
+  if(dataDocument.description) {
+    zoneSelectionnee = document.getElementById("description");
+    zoneSelectionnee.value = dataDocument.description;
+  }
+  zoneSelectionnee = document.getElementById("liencouverture");
+  zoneSelectionnee.value = dataDocument.liencouverture;
+  zoneSelectionnee = document.getElementById("rayons");
+  var idrayon = dataDocument.rayon.idrayon;
+  var option = zoneSelectionnee.querySelector(`#${idrayon}`);
+  option.selected = true;
+  if(dataDocument.disponible) {
+    zoneSelectionnee = document.getElementById("dispo");
+    zoneSelectionnee.checked = true;
+  } else {
+    zoneSelectionnee = document.getElementById("pasdispo");
+    zoneSelectionnee.checked = true;
+  }
+}
+
 // Initialise les listes de rayon, genres et thèmes au chargement de la page
 window.addEventListener('DOMContentLoaded', function() {
   initialiserListe('http://api.biblioinfo.live/rayons', 'rayons', 'idrayon', 'nomrayon');
   initialiserListe('http://api.biblioinfo.live/genres', 'genres', 'idgenre', 'nomgenre');
   initialiserListe('http://api.biblioinfo.live/themes', 'themes', 'idtheme', 'nomtheme');
+  var urlParams = new URLSearchParams(window.location.search);
+  var documentId = urlParams.get('id');
+  if(documentId) {
+    remplir_input(documentId);
+  }
 })
