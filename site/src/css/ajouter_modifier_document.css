@@ -72,16 +72,16 @@ fieldset {
   background-color: #ff8a8a;
 }
 
-.ajouter {
+.submit {
   background-color: #d7ffd8;
   transition: background-color 0.3s;
 }
 
-.ajouter:hover {
+.submit:hover {
   background-color: #92fc95;
 }
 
-.ajouter:hover, .annuler:hover {
+.submit:hover, .annuler:hover {
   cursor: pointer;
 }
 
@@ -90,7 +90,7 @@ fieldset {
   gap: 30px;
 }
 
-.ajouter, .annuler {
+.submit, .annuler {
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 5px;

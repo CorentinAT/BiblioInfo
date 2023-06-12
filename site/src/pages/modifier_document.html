@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <title>Ajouter un document - BiblioInfo</title>
-    <script src="../js/ajouter_document.js"></script>
-    <link rel="stylesheet" href="../css/ajouter_document.css">
+    <title>Modifier un document - BiblioInfo</title>
+    <script src="../js/ajouter_modifier_document.js"></script>
+    <link rel="stylesheet" href="../css/ajouter_modifier_document.css">
     <link rel="stylesheet" href="../css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="overlay"></div>
-    <h1>Ajouter un document</h1>
+    <h1 id="titre"></h1>
     <form onSubmit="ajouterDoc(event)">
       <div class="grille">
         <div class="partie partiegauche">
@@ -68,7 +68,7 @@
       </div>
       <div class="boutons">
         <a href="../../index.html" class="annuler">Annuler</a>
-        <input type="submit" class="submit" value="Ajouter">
+        <input type="submit" class="submit" value="Modifier le document">
       </div>
     </form>
   </body>

@@ -142,3 +142,11 @@ def delete_document(idDoc: int):
   bdd.delete_note_from_document(conn, idDoc)
   bdd.delete_genres_from_document(conn, idDoc)
   bdd.delete_themes_from_document(conn, idDoc)
+
+@app.delete("/document/{idDoc}/delete_genres_themes")
+def delete_genres_themes_from_document(idDoc: int):
+  """Supprimer les genres et thèmes liées à un document, via l'id de ce document"""
+  conn = bdd.create_connection(database)
+  verifs.verif_doc_existe(conn, idDoc)
+  bdd.delete_genres_from_document(conn, idDoc)
+  bdd.delete_themes_from_document(conn, idDoc)
