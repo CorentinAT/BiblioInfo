@@ -101,3 +101,42 @@ header {
 }
 
 /*-------------------------------------------------------------------------------------------------*/
+
+.conteneur_droit div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.divAuteur,
+.divSynopsis,
+.divGenres,
+.divThemes {
+    display: flex;
+    flex-direction: column;
+}
+
+.divDispoLieu {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lieu {
+    display: flex;
+    flex-direction: column;
+}
+
+.divNote {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dispo span {
+    margin-left: 6px;
+}
+
+.etage #etage {
+    margin-left: 5px;
+    font-weight: bold;
+}
