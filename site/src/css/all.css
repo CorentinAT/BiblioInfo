@@ -2,7 +2,48 @@
   font-family: 'Sora', sans-serif;
 }
 
+body, header {
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
   text-align: center;
   font-weight: normal;
+}
+
+/*------------------------------------------ HEADER ------------------------------------------------------------ */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(229, 229, 229);
+  width: screen;
+  height: 55px;
+  padding: 10px;
+  color: white;
+  position: sticky;      
+  display: flex;       
+}
+
+/* Styles pour l'image */
+.header .logo {
+  height: 130%;
+}
+
+.header .liens {
+  display: flex;
+  gap: 25px;
+}
+
+/* Styles pour les boutons */
+.header a {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+}
+
+.header a:hover {
+  text-decoration: underline;
 }
