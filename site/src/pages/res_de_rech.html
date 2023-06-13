@@ -113,10 +113,14 @@ body, header {
 
     /* Style pour la boîte avec bord bleu */
     .box {
+      position: absolute;
       border: 2px solid rgb(74, 76, 200);
       padding: 20px;
-      margin-top: 20px;
+      margin-top: 25%;
+      background-color: white;
     }
+
+
 
     
   
@@ -131,7 +135,7 @@ body, header {
 .case {
   width: 140px; /* Modifier la largeur des cases */
   height: 200px; /* Modifier la hauteur des cases */
-  background-color: blue;
+  background-color: #f5f5f5;
   border-radius: 4px;
 }
 .case:first-child {
@@ -141,6 +145,43 @@ body, header {
 .case:last-child {
   margin-right: 200px; /* Ajouter une marge à droite pour la dernière case */
 }
+
+.case-container .case:first-child {
+  background-color: #f5f5f5;
+}
+
+.case-content {
+  position: relative;
+  height: 100%;
+}
+
+
+.case-image {
+  position: absolute;
+  top: 3%;
+  left: 17.5%;
+  right: 0%;
+  width: calc(100% - 50px);
+  height: auto;
+}
+
+.case-text {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100%;
+  padding: 0 10px;
+  margin: 0;
+  color: black;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+
 
 
 
@@ -189,7 +230,7 @@ body, header {
       <input type="image" src="../img/loupe.png" alt="Rechercher" class="search-image1">
     </form>
     
-    <div id="content" class="box" style="display: none;">
+    <div id="content" class="box " style="display: none;">
       <h2>Genres :</h2>
       <input type="checkbox" id="checkbox1">
       <label for="checkbox1">Action</label><br>
@@ -200,13 +241,25 @@ body, header {
     </div>
   </div>
 
+
+  
   <div class="case-container">
-    <div class="case"></div>
+    <div class="case">
+      <div class="case-content">
+        <img src="../img/couverture livre exemple.webp" alt="Image de la première case" class="case-image">
+        <p class="case-text">
+          la brume de bois et le loup <br>
+          Jean-pierre Fouko<br>
+        </p>
+      </div>
+    </div>
     <div class="case"></div>
     <div class="case"></div>
     <div class="case"></div>
     <div class="case"></div>
   </div>
+  
+  
   
 
   <script>
