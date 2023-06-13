@@ -5,9 +5,24 @@
   <div class="header">
     <img src="../img/logo.png" alt="Logo" class="logo">
     <div class="liens">
-      <a href="../../index.html">Accueil</a>
-      <a href="../pages/recherche.html">Rechercher dans la bibliothèque</a>
-      <a href="../pages/ajouter_document.html">Ajouter un document</a>
+      <a onclick="redirigerVersAccueil()">Accueil</a>
+      <a onclick="redirigerVersRechercher()">Rechercher dans la bibliothèque</a>
+      <a onclick="redirigerVersAjouter()">Ajouter un document</a>
+
     </div>
   </div>
 </header>
+
+<script>
+  function redirigerVersAccueil() {
+    window.parent.location.href = "../../index.html";
+  }
+
+  function redirigerVersRechercher() {
+    window.parent.location.href = "../pages/recherche.html";
+  }
+
+  function redirigerVersAjouter() {
+    window.parent.location.href = "../pages/ajouter_document.html";
+  }
+</script>
