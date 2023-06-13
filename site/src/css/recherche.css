@@ -1,0 +1,43 @@
+/* Style pour la barre de recherche */
+.search-bar {
+  width: 400px;
+  height: 5vh;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 5px;
+  background-color: #f5f5f5;
+}
+/* Style pour l'image */
+.search-image1 {
+  border: 1px solid gray;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 5px;
+  height: 5vh;
+  cursor: pointer;
+}
+.search-image2 {
+  border: 1px solid gray;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 5px;
+  height: 5vh;
+  cursor: pointer;
+  margin-block-end: auto;
+}
+/* Style pour le formulaire */
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+  margin-top: 10px;
+}
+/* Style pour la boîte avec bord bleu */
+.box {
+  border: 2px solid rgb(74, 76, 200);
+  padding: 20px;
+  margin-top: 20px;
+}
