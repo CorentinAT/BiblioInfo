@@ -36,60 +36,59 @@
         <div class="vertical-line"></div>
     </div>
 
-
-
     <div class="conteneur_droit">
         <h1 id="titre"></h1>
 
         <div class="description">
-
-            <h3><span><strong>Auteur :</strong></span> <span id="auteur"></span></h3>
-
-            <div>
-                <div>
-                    <h3><b>Synopsis :</b></h3>
-                    <h3 id="synopsis"></h3>
-                </div>
-
-                <div>
-                    <h3>Genres :</h3>
-                    <h3 id="genres"></h3>
-                    <h3>Thèmes :</h3>
-                    <h3 id="themes"></h3>
-                </div>
-
-                <div>
-                    <h3 id="disponible"></h3>
-                    <h3>Disponible </h3>
-                    <h3>Rayon </h3>
-                    <h3 id="rayons"></h3>
-                    <h3 id="etage"></h3>
-                    <h3> étage</h3>
-
-                </div>
-
-
-                <span>
-                    <button>Modifier</button>
-                    <button>Supprimer</button>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>Noter</button>
-                </span>
-
+            <div class="divAuteur">
+                <h3>Auteur :</h3>
+                <span id="auteur"></span>
             </div>
+            <div class="divSynopsis">
+                <h3><b>Synopsis :</b></h3>
+                <span id="synopsis"></span>
+            </div>
+            <div class="divGenres">
+                <h3>Genres :</h3>
+                <span id="genres"></span>
+            </div>
+            <div class="divThemes">
+                <h3>Thèmes :</h3>
+                <span id="themes"></span>
+            </div>
+            <div class="divDispoLieu">
+                <div class="dispo">
+                    <img id="logoDispo" src="" alt="" height="20px" width="auto">
+                    <span id="dispoTxt"></span>
+                </div>
+                <div class="lieu">
+                    <div class="rayon">
+                        <span>Rayon</span>
+                        <span id="rayons"></span>
+                    </div>
+                    <div class="etage">
+                        <span> Étage</span>
+                        <span id="etage"></span>
+                    </div>
 
+                </div>
+            </div>
+            <div class="divNote">
+                <button>Modifier</button>
+                <button>Supprimer</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>Noter</button>
+            </div>
         </div>
-
-
     </div>
-
 </body>
+
 <script>// Effectuer la requête AJAX
-    var url = 'http://api.biblioinfo.live/document/12';
+    var url = 'http://api.biblioinfo.live/document/11';
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.onload = function () {
@@ -126,7 +125,16 @@
             themes.textContent = themesText;
 
             disponible = document.getElementById("disponible");
-            disponible.textContent = response.disponible;
+            disponibleTxt = document.getElementById("dispoTxt");
+            imageDispo = document.getElementById("logoDispo");
+            if (response.disponible) {
+                imageDispo.src = "../img/logo_dispo_true.PNG";
+                disponibleTxt.textContent = "Disponible";
+            }
+            else {
+                imageDispo.src = "../img/logo_dispo_false.jpg";
+                disponibleTxt.textContent = "Indisponible";
+            }
 
             rayons = document.getElementById("rayons");
             rayons.textContent = response.rayon.nomrayon;
@@ -136,6 +144,8 @@
 
             couverture = document.getElementById("couverture");
             couverture.src = response.liencouverture;
+
+
 
             //console.log(idVal);
             //console.log(titreVal);

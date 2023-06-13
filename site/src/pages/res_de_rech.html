@@ -3,12 +3,12 @@
 <head>
   <title>Page avec barre de recherche et header</title>
 
-  <link rel="stylesheet" href="../src/css/all.css">
+  <link rel="stylesheet" href="../css/all.css">
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
-  <link rel="preconnect" href="https://fonts.gstatic.com/" >
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" >
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
     
   <style>
     /* Styles pour le conteneur principal */
@@ -43,8 +43,7 @@ body, header {
 
 /* Styles pour l'image */
 .logo {
-  width: 15%;
-  height: 110%;
+  height: 130%;
   
 }
 
@@ -120,8 +119,42 @@ body, header {
     }
 
     
+  
+
+/* Style pour les cinq cases */
+.case-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.case {
+  width: 140px; /* Modifier la largeur des cases */
+  height: 200px; /* Modifier la hauteur des cases */
+  background-color: blue;
+  border-radius: 4px;
+}
+.case:first-child {
+  margin-left: 200px; /* Ajouter une marge à gauche pour la première case */
+}
+
+.case:last-child {
+  margin-right: 200px; /* Ajouter une marge à droite pour la dernière case */
+}
+
+
+
+</style>
+
+
   </style>
 
+  <script>
+    function showGenres() {
+      var box = document.getElementById("genresBox");
+      box.style.display = "block";
+    }
+  </script>
 
 </head>
 <body>
@@ -130,7 +163,7 @@ body, header {
   <header>
     
       <div class="header">
-        <img src="../src/img/logo.png" alt="Logo" class="logo">
+        <img src="../img/logo.png" alt="Logo" class="logo">
         <div>
           <button class="button">Accueil</button>
           <button class="button">Rechercher dans la bibliothèque</button>
@@ -147,11 +180,16 @@ body, header {
     <h1>Rechercher dans la bibliothèque</h1>
     <form class="form">
 
+      <input type="checkbox" id="checkboxGenres" class="search-checkbox" onchange="toggleContent()" style="display: none;">
+      <label for="checkboxGenres">
+        <img src="../img/filtre.png" class="search-image2">
+      </label>
+
       <input type="text" class="search-bar" placeholder="Quel document cherchez-vous ?">
-      <input type="image" src="../src/img/loupe.png" alt="Rechercher" class="search-image1">
+      <input type="image" src="../img/loupe.png" alt="Rechercher" class="search-image1">
     </form>
     
-    <div id="content" class="box">
+    <div id="content" class="box" style="display: none;">
       <h2>Genres :</h2>
       <input type="checkbox" id="checkbox1">
       <label for="checkbox1">Action</label><br>
@@ -162,7 +200,27 @@ body, header {
     </div>
   </div>
 
+  <div class="case-container">
+    <div class="case"></div>
+    <div class="case"></div>
+    <div class="case"></div>
+    <div class="case"></div>
+    <div class="case"></div>
+  </div>
   
+
+  <script>
+    function toggleContent() {
+      var checkboxGenres = document.getElementById("checkboxGenres");
+      var content = document.getElementById("content");
+      if (checkboxGenres.checked) {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
+      }
+    }
+  </script>
+
 </body>
 </html>
 
