@@ -121,7 +121,7 @@ def update_document(idDoc: int, document: classes.UpdateDocument):
   conn = bdd.create_connection(database)
   verifs.verif_doc_existe(conn, idDoc)
   if document.idrayon != None:
-    verifs.verif_rayon_existe(document.idrayon)
+    verifs.verif_rayon_existe(conn, document.idrayon)
   if document.titre != None:
     document_id = bdd.update_info_document(conn, idDoc, "titre", document.titre)
   if document.liencouverture != None:

@@ -97,7 +97,7 @@ function afficherOverlayValidation(idDoc) {
   var overlay = `
   <div class="case">
     <div class="contenu">
-      <p>Document ajouté</p>
+      <p>Opération réussie</p>
       <a href="../pages/page_doc.html?id=${idDoc}"><button>Ok</button></a>
     </div>
   </div>
@@ -151,6 +151,57 @@ function ajouterDoc(event) {
   });
 }
 
+function modifierDoc(event) {
+  event.preventDefault();
+
+  // Récupère les éléments du formulaire donnés par l'utilisateur
+  const titre = document.getElementById("titre").value;
+  const liencouverture = document.getElementById("liencouverture").value;
+  const auteur = document.getElementById("auteur").value;
+  const description = document.getElementById("description").value;
+  const idrayon = document.getElementById("rayons").value;
+
+  var urlParams = new URLSearchParams(window.location.search);
+  const idDoc = urlParams.get('id');
+
+  // Fait une requête à l'api pour ajouter le document selon les informations entrées par l'utilisateur
+  fetch(`http://api.biblioinfo.live/document/${idDoc}/update`, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      ...(titre!=="" && {titre}),
+      ...(liencouverture!=="" && {liencouverture}),
+      ...(description!=="" && {description}),
+      ...(auteur!=="" && {auteur}),
+      disponible: estDispo(),
+      idrayon
+    }),
+    mode: 'cors'
+  })
+  .then(response => response.json())
+  .then(() => {
+    fetch(`http://api.biblioinfo.live/document/${idDoc}/delete_genres_themes`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(() => {
+      ajouterGenres(idDoc); // Ajoute les genres cochés au document
+      ajouterThemes(idDoc); // Ajoute les thèmes cochés au document
+    })
+  })
+  .then(() => {
+    afficherOverlayValidation(idDoc); // Affiche l'overlay de validation, avec la redirection
+  })
+  .catch(error => {
+    console.error('Une erreur s\'est produite:', error);
+  });
+}
+
 async function chargerDoc(documentId) {
   const response = await fetch(`http://api.biblioinfo.live/document/${documentId}`, {
     method: 'GET',
@@ -189,6 +240,30 @@ async function remplir_input(documentId) {
     zoneSelectionnee = document.getElementById("pasdispo");
     zoneSelectionnee.checked = true;
   }
+  cocher_themes_genres(dataDocument);
+}
+
+function cocher_themes_genres(dataDocument) {
+  var fieldset = document.getElementById('themes');
+  var checkboxes = fieldset.querySelectorAll('input[type="checkbox"]');
+
+  checkboxes.forEach(function(checkbox) {
+    for(let i=0; i<dataDocument.themes.length; i++) {
+      if(checkbox.id===dataDocument.themes[i].idtheme+"theme") {
+        checkbox.checked = true;
+      }
+    }
+  });
+
+  var fieldset = document.getElementById('genres');
+  var checkboxes = fieldset.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(function(checkbox) {
+    for(let i=0; i<dataDocument.themes.length; i++) {
+      if(checkbox.id===dataDocument.genres[i].idgenre+"genre") {
+        checkbox.checked = true;
+      }
+    }
+  });
 }
 
 // Initialise les listes de rayon, genres et thèmes au chargement de la page
