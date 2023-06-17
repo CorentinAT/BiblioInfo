@@ -69,3 +69,18 @@ window.addEventListener('DOMContentLoaded', function () {
 
     request.send();
 });
+
+function modifier() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var documentId = urlParams.get('id');
+  window.location.href = `./modifier_document.html?id=${documentId}`;
+}
+
+function supprimer() {
+  fetch('http://api.biblioinfo.live/document/37/delete', {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(() => {window.location.href="../../index.html"});
+}
