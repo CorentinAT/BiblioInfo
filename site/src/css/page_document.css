@@ -3,6 +3,7 @@
     width: auto;
     padding: 10px;
     margin-right: 120px;
+    margin-left: 120px;
 }
 
 .note {
@@ -16,7 +17,6 @@
     align-items: center;
     text-align: center;
     position: relative;
-    left: 10%;
     float: left;
     border-right: 2px solid black;
     border-radius: 2px;

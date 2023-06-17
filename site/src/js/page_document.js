@@ -14,6 +14,17 @@ window.addEventListener('DOMContentLoaded', function () {
             var idVal = response.id;
             var noteMoyenneVal = response.note_moyenne;
 
+            etoiles = document.getElementById("etoiles");
+            let i = 0;
+            imagesEtoiles = "";
+            for(i; i<Math.round(noteMoyenneVal); i++) {
+              imagesEtoiles += "<img id='etoile_pleine' class='note' src='../img/etoile_pleine.png' alt='' />"
+            }
+            for(i; i<5; i++) {
+              imagesEtoiles += "<img id='etoile_vide' class='note' src='../img/etoile_vide.png' alt='' />"
+            }
+            etoiles.innerHTML = imagesEtoiles;
+
             titre = document.getElementById("titre");
             titre.textContent = response.titre;
 
