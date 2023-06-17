@@ -1,30 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Page avec barre de recherche et header</title>
-  <link rel="stylesheet" href="../css/all.css">
-  <link rel="stylesheet" href="../css/recherche.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <iframe src="../header/header.html" frameborder="0" width="100%" height="75px"></iframe>
-    <h1>Rechercher dans la bibliothèque</h1>
-    <form class="form">
-      <input type="text" class="search-bar" placeholder="Quel document cherchez-vous ?">
-      <input type="image" src="../img/loupe.png" alt="Rechercher" class="search-image1">
-    </form>
-    <div id="content" class="box">
-      <h2>Genres :</h2>
-      <input type="checkbox" id="checkbox1">
-      <label for="checkbox1">Action</label><br>
-      <input type="checkbox" id="checkbox2">
-      <label for="checkbox2">Horreur</label><br>
-      <input type="checkbox" id="checkbox3">
-      <label for="checkbox3">Etc</label><br>
-    </div>
-</body>
+<html lang="fr">
+  <head>
+    <title>Page avec barre de recherche et header</title>
+    <script src="../js/recherche.js"></script>
+    <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="../css/recherche.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <iframe src="../header/header.html" frameborder="0" width="100%" height="75px"></iframe>
+      <h1>Rechercher dans la bibliothèque</h1>
+      <form class="form" onSubmit="recherche(event)">
+        <input type="text" class="search-bar" id="titre" placeholder="Quel document cherchez-vous ?">
+        <input type="image" src="../img/loupe.png" alt="Rechercher" class="search-image1">
+      </form>
+      <fieldset id="genres"></fieldset>
+  </body>
 </html>
 
 
