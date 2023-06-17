@@ -28,30 +28,18 @@ function initialiserGenres() {
 
 function recherche(event) {
   event.preventDefault();
-  
-  // Récupérer toutes les cases cochées
   const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-
   const titre = document.getElementById("titre").value;
   
-  // Vérifier s'il y a des cases cochées
   if (checkboxes.length > 0) {
-    // Créer un tableau pour stocker les identifiants des cases cochées
     const checkedIds = [];
-    
-    // Parcourir les cases cochées et récupérer leurs identifiants
     checkboxes.forEach((checkbox) => {
       checkedIds.push(checkbox.id);
     });
-    
-    // Convertir les identifiants en une chaîne de requête
     const queryString = checkedIds.join('&');
-    
-    // Modifier la valeur de window.location.href avec les paramètres de la requête
     window.location.href = `../pages/res_de_rech.html?titre=${titre}&${queryString}`;
   } else {
-    // Aucune case cochée, rediriger sans paramètres
-    window.location.href = "../pages/res_de_rech.html";
+    window.location.href = `../pages/res_de_rech.html?titre=${titre}`;
   }
 }
 
