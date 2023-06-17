@@ -26,7 +26,7 @@ h1 {
   display: flex;       
 }
 
-/* Styles pour l'image */
+/* Styles pour le logo */
 .header .logo {
   height: 130%;
 }
@@ -36,7 +36,7 @@ h1 {
   gap: 25px;
 }
 
-/* Styles pour les boutons */
+/* Styles pour les boutons du header */
 .header a {
   border: none;
   background-color: transparent;

@@ -1,3 +1,4 @@
+/* Zones de texte, combobox et autres entree utilisateurs du formulaire */
 form input, form select, form textarea, form button, form fieldset:not(#disponible) {
   background-color: #F5F5F5;
   border-radius: 3px;
@@ -8,10 +9,12 @@ form input, form select, form textarea, form button, form fieldset:not(#disponib
   transition: border-color 0.2s;
 }
 
+
 form input:not(.ajouter):hover, form select:hover, form textarea:hover {
   border-color: rgb(180, 180, 180);
 }
 
+/* Eléments obligatoires avec l'étoile rouge */
 em {
   color: red;
   font-style: normal;
@@ -45,6 +48,7 @@ fieldset {
   border: none;
 }
 
+/* Listes des genres et des thèmes */
 #genres, #themes {
   display: flex;
   flex-wrap: wrap;
@@ -97,6 +101,7 @@ fieldset {
   padding-bottom: 5px;
 }
 
+/* Pour le titre, l'auteur et le genre, qui sont des inputs plus petits */
 .pluspetit {
   width: 60%;
 }
@@ -127,6 +132,7 @@ fieldset {
   transition: background-color 0.3s;
 }
 
+/* La liste des thèmes et des genres apparait quand leur checkbox liée (invisible) est cochée */
 #deroulerthemes:checked ~ label .derouler-moins, #deroulergenres:checked ~ label .derouler-moins {
   display: inline-block;
 }
@@ -192,6 +198,8 @@ label[for="deroulerthemes"], label[for="deroulergenres"], #disponible label, #di
   }
 }
 
+
+/* Partie dédiée au module de validation qui s'affiche à la soumission du formulaire */
 .case {
   position: fixed;
   top: 0;
