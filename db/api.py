@@ -123,15 +123,17 @@ def update_document(idDoc: int, document: classes.UpdateDocument):
   if document.idrayon != None:
     verifs.verif_rayon_existe(conn, document.idrayon)
   if document.titre != None:
-    document_id = bdd.update_info_document(conn, idDoc, "titre", document.titre)
+    bdd.update_info_document(conn, idDoc, "titre", document.titre)
   if document.liencouverture != None:
-    bdd.update_info_document(conn, document_id, "liencouverture", document.liencouverture)
+    bdd.update_info_document(conn, idDoc, "liencouverture", document.liencouverture)
   if document.auteur != None:
-    document_id = bdd.update_info_document(conn, idDoc, "auteur", document.auteur)
+    bdd.update_info_document(conn, idDoc, "auteur", document.auteur)
   if document.disponible != None:
-    document_id = bdd.update_info_document(conn, idDoc, "disponible", document.disponible)
-    document_id = bdd.update_info_document(conn, idDoc, "idrayon", document.idrayon)
-  return document_id
+    bdd.update_info_document(conn, idDoc, "disponible", document.disponible)
+    bdd.update_info_document(conn, idDoc, "idrayon", document.idrayon)
+  if document.description != None:
+    bdd.update_info_document(conn, idDoc, "description", document.description)
+  return idDoc
 
 @app.delete("/document/{idDoc}/delete")
 def delete_document(idDoc: int):
