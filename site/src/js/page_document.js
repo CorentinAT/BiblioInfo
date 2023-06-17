@@ -84,3 +84,29 @@ function supprimer() {
     }
   }).then(() => {window.location.href="../../index.html"});
 }
+
+function noter() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var documentId = urlParams.get('id');
+  const boutonsRadio = document.getElementsByName('note');
+  let note = null;
+  boutonsRadio.forEach((bouton) => {
+    if (bouton.checked) {
+      note = bouton.value;
+    }
+  });
+  fetch('http://api.biblioinfo.live/create_note', {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "note": note,
+      "iddoc": documentId
+    })
+  })
+  .then(() => {
+    window.location.reload();
+  })
+}

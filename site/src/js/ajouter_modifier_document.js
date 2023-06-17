@@ -120,21 +120,21 @@ function ajouterDoc(event) {
 
   // Fait une requête à l'api pour ajouter le document selon les informations entrées par l'utilisateur
   fetch('http://api.biblioinfo.live/create_document', {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    titre,
-    ...(liencouverture!=="" && {liencouverture}),
-    ...(description!=="" && {description}),
-    ...(auteur!=="" && {auteur}),
-    disponible: estDispo(),
-    idrayon
-  }),
-  mode: 'cors'
-})
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      titre,
+      ...(liencouverture!=="" && {liencouverture}),
+      ...(description!=="" && {description}),
+      ...(auteur!=="" && {auteur}),
+      disponible: estDispo(),
+      idrayon
+    }),
+    mode: 'cors'
+  })
   .then(response => response.json())
   .then(data => {
     idDoc = data;
