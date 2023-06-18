@@ -50,4 +50,15 @@ function afficherRes(listeRes) {
     cases += '<p>Aucun document ne correspond à la recherche</p>'
   }
   div.innerHTML = cases;
+  cocherGenres();
+}
+
+function cocherGenres() {
+  const urlParams = new URLSearchParams(window.location.search);
+  urlParams.forEach((value, key) => {
+    if (key !== "titre") {
+      checkbox = document.getElementById(key);
+      checkbox.checked = true;
+    }
+  });
 }
