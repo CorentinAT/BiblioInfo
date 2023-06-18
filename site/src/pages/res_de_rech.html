@@ -75,7 +75,42 @@
       background-color: white;
     }
 
+/* Style pour les cinq cases */
+.case-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 50px;
+  margin-right: 50px;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
+.case {
+  width: 200px; /* Modifier la largeur des cases */
+  background-color: #efefef;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.case-image {
+  width: 70%;
+}
+
+.case-text {
+  width: 100%;
+  color: black;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .img_dispo {
   width: 40px;
