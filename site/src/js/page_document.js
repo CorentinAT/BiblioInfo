@@ -1,92 +1,108 @@
+//Chargement de la page
 window.addEventListener('DOMContentLoaded', function () {
-    var urlParams = new URLSearchParams(window.location.search);
-    var documentId = urlParams.get('id');
+  var urlParams = new URLSearchParams(window.location.search);
+  var documentId = urlParams.get('id');
 
-    var request = new XMLHttpRequest();
-    var url = 'http://api.biblioinfo.live/document/' + documentId;
-    request.open('GET', url, true);
+  //Requête XML vers BD
+  var request = new XMLHttpRequest();
+  var url = 'http://api.biblioinfo.live/document/' + documentId;
+  request.open('GET', url, true);
 
-    request.onload = function () {
-        console.log(documentId);
-        if (request.status >= 200 && request.status < 400) {
-            var response = JSON.parse(request.responseText);
+  //Récupérations des variables de la requête
+  request.onload = function () {
+    console.log(documentId);
+    if (request.status >= 200 && request.status < 400) {
+      var response = JSON.parse(request.responseText);
 
-            var idVal = response.id;
-            var noteMoyenneVal = response.note_moyenne;
+      //Note du document
+      var idVal = response.id;
+      var noteMoyenneVal = response.note_moyenne;
 
-            etoiles = document.getElementById("etoiles");
-            let i = 0;
-            imagesEtoiles = "";
-            for(i; i<Math.round(noteMoyenneVal); i++) {
-              imagesEtoiles += "<img id='etoile_pleine' class='note' src='../img/etoile_pleine.png' alt='' />"
-            }
-            for(i; i<5; i++) {
-              imagesEtoiles += "<img id='etoile_vide' class='note' src='../img/etoile_vide.png' alt='' />"
-            }
-            etoiles.innerHTML = imagesEtoiles;
+      //Affichage de la note moyenne sous forme d'étoiles
+      etoiles = document.getElementById("etoiles");
+      let i = 0;
+      imagesEtoiles = "";
+      for (i; i < Math.round(noteMoyenneVal); i++) {
+        imagesEtoiles += "<img id='etoile_pleine' class='note' src='../img/etoile_pleine.png' alt='' />"
+      }
+      for (i; i < 5; i++) {
+        imagesEtoiles += "<img id='etoile_vide' class='note' src='../img/etoile_vide.png' alt='' />"
+      }
+      etoiles.innerHTML = imagesEtoiles;
 
-            titre = document.getElementById("titre");
-            titre.textContent = response.titre;
+      //Titre
+      titre = document.getElementById("titre");
+      titre.textContent = response.titre;
 
-            synopsis = document.getElementById("synopsis");
-            synopsis.textContent = response.description;
+      //Synopsis
+      synopsis = document.getElementById("synopsis");
+      synopsis.textContent = response.description;
 
-            genre = document.getElementById("genres");
-            var genreText = response.genres.map(function (genre) {
-                return genre.nomgenre;
-            }).join(", ");
-            genre.textContent = genreText;
+      //Genre(s)
+      genre = document.getElementById("genres");
+      var genreText = response.genres.map(function (genre) {
+        return genre.nomgenre;
+      }).join(", ");
+      genre.textContent = genreText;
 
-            auteur = document.getElementById("auteur");
-            auteur.textContent = response.auteur;
+      //Auteur
+      auteur = document.getElementById("auteur");
+      auteur.textContent = response.auteur;
 
-            themes = document.getElementById("themes");
-            var themesText = response.themes.map(function (theme) {
-                return theme.nomtheme;
-            }).join(", ");
-            themes.textContent = themesText;
+      //Theme(s)
+      themes = document.getElementById("themes");
+      var themesText = response.themes.map(function (theme) {
+        return theme.nomtheme;
+      }).join(", ");
+      themes.textContent = themesText;
 
-            disponible = document.getElementById("disponible");
-            disponibleTxt = document.getElementById("dispoTxt");
-            imageDispo = document.getElementById("logoDispo");
-            if (response.disponible) {
-                imageDispo.src = "../img/logo_dispo_true.PNG";
-                disponibleTxt.textContent = "Disponible";
-            } else {
-                imageDispo.src = "../img/logo_dispo_false.jpg";
-                disponibleTxt.textContent = "Indisponible";
-            }
+      //Disponibilité et affichage logo dispo
+      disponible = document.getElementById("disponible");
+      disponibleTxt = document.getElementById("dispoTxt");
+      imageDispo = document.getElementById("logoDispo");
+      if (response.disponible) {
+        imageDispo.src = "../img/logo_dispo_true.PNG";
+        disponibleTxt.textContent = "Disponible";
+      } else {
+        imageDispo.src = "../img/logo_dispo_false.jpg";
+        disponibleTxt.textContent = "Indisponible";
+      }
 
-            rayons = document.getElementById("rayons");
-            rayons.textContent = response.rayon.nomrayon;
+      //Rayon
+      rayons = document.getElementById("rayons");
+      rayons.textContent = response.rayon.nomrayon;
 
-            etage = document.getElementById("etage");
-            etage.textContent = response.rayon.etage;
+      //Num étage
+      etage = document.getElementById("etage");
+      etage.textContent = response.rayon.etage;
 
-            couverture = document.getElementById("couverture");
-            couverture.src = response.liencouverture;
+      //Lien couverture
+      couverture = document.getElementById("couverture");
+      couverture.src = response.liencouverture;
 
-            // Autres manipulations des données
-        } else {
-            // La requête a échoué
-            console.error('Erreur lors de la requête. Statut:', request.status);
-        }
-    };
+      // Autres manipulations des données
+    } else {
+      // La requête a échoué
+      console.error('Erreur lors de la requête. Statut:', request.status);
+    }
+  };
 
-    request.onerror = function () {
-        // Erreur lors de la requête
-        console.error('Erreur lors de la requête.');
-    };
+  request.onerror = function () {
+    // Erreur lors de la requête
+    console.error('Erreur lors de la requête.');
+  };
 
-    request.send();
+  request.send();
 });
 
+//Modification du document
 function modifier() {
   var urlParams = new URLSearchParams(window.location.search);
   var documentId = urlParams.get('id');
   window.location.href = `./modifier_document.html?id=${documentId}`;
 }
 
+//Supprimer le document
 function supprimer() {
   fetch('http://api.biblioinfo.live/document/37/delete', {
     method: 'DELETE',
@@ -96,16 +112,19 @@ function supprimer() {
   }).then(() => {window.location.href="../pages/res_de_rech.html?titre="});
 }
 
+//Noter le document
 function noter() {
   var urlParams = new URLSearchParams(window.location.search);
   var documentId = urlParams.get('id');
   const boutonsRadio = document.getElementsByName('note');
   let note = null;
+  //Récupérer la note
   boutonsRadio.forEach((bouton) => {
     if (bouton.checked) {
       note = bouton.value;
     }
   });
+  //Envoyer la note à la BD
   fetch('http://api.biblioinfo.live/create_note', {
     method: 'POST',
     headers: {
@@ -117,7 +136,8 @@ function noter() {
       "iddoc": documentId
     })
   })
-  .then(() => {
-    window.location.reload();
-  })
+    //Recharger la page
+    .then(() => {
+      window.location.reload();
+    })
 }
