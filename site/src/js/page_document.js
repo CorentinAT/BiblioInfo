@@ -93,7 +93,7 @@ function supprimer() {
     headers: {
       'Accept': 'application/json'
     }
-  }).then(() => {window.location.href="../../index.html"});
+  }).then(() => {window.location.href="../pages/res_de_rech.html?titre="});
 }
 
 function noter() {
