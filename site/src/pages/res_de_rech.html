@@ -15,22 +15,15 @@
     <div class="container">
       <h1>Rechercher dans la bibliothèque</h1>
       <form class="form" onSubmit="recherche()">
-        <input type="checkbox" id="checkboxGenres" class="search-checkbox" onchange="toggleContent()" style="display: none;">
+        <input type="checkbox" id="checkboxGenres" class="search-checkbox" onChange="toggleContent()" style="display: none;">
         <label for="checkboxGenres">
           <img src="../img/filtre.png" class="search-image2">
         </label>
         <input type="text" class="search-bar" placeholder="Quel document cherchez-vous ?">
         <input type="image" src="../img/loupe.png" alt="Rechercher" class="search-image1">
       </form>
-      <div id="content" class="box " style="display: none;">
-        <h2>Genres :</h2>
-        <input type="checkbox" id="checkbox1">
-        <label for="checkbox1">Action</label><br>
-        <input type="checkbox" id="checkbox2">
-        <label for="checkbox2">Horreur</label><br>
-        <input type="checkbox" id="checkbox3">
-        <label for="checkbox3">Etc</label><br>
-      </div>
+      <fieldset id="genres" class="box" style="display: none;">
+      </fieldset>
     </div>
 
     <div class="case-container" id="listecases"></div>
@@ -38,9 +31,9 @@
     <script>
       function toggleContent() {
         var checkboxGenres = document.getElementById("checkboxGenres");
-        var content = document.getElementById("content");
+        var content = document.getElementById("genres");
         if (checkboxGenres.checked) {
-          content.style.display = "block";
+          content.style.display = "flex";
         } else {
           content.style.display = "none";
         }

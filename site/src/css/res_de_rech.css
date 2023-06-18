@@ -40,13 +40,26 @@
   margin-top: 10px;
 }
 
-/* Style pour la boîte avec bord bleu */
+/* Style pour la boîte avec les genres */
 .box {
+  border-radius: 6px;
+  border-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+  justify-content: center;
   position: absolute;
-  border: 2px solid rgb(74, 76, 200);
-  padding: 20px;
-  margin-top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: white;
+}
+.elementliste {
+  width: 30%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 5px;
 }
 
 /* Style pour les cinq cases */
