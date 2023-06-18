@@ -1,3 +1,4 @@
+// Fonction pour récupérer les genres de la base de données et les mettre dans la liste de cases à cocher
 function initialiserGenres() {
   // Requête pour récupérer la liste des genres
   fetch("http://api.biblioinfo.live/genres", {
@@ -26,6 +27,7 @@ function initialiserGenres() {
   });
 }
 
+// Fonction qui récupère le titre entré et les genres cochés, et qui renvoie vers la page de resultats de recherche avec les paramètres correspondants
 function recherche(event) {
   event.preventDefault();
   const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#checkboxGenres):checked');

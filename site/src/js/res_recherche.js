@@ -1,3 +1,4 @@
+// Au chargement de la page, pré-rempli le titre recherché, puis fait la requête de recherche
 window.addEventListener('DOMContentLoaded', function() {
   const urlParams = new URLSearchParams(window.location.search);
   let titre = urlParams.get("titre");
@@ -28,7 +29,7 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 })
 
-
+// Fonction qui affiche sur la page la liste des livres trouvés avec la recherche
 function afficherRes(listeRes) {
   const div = document.getElementById("listecases");
   let cases = "";
@@ -53,6 +54,7 @@ function afficherRes(listeRes) {
   cocherGenres();
 }
 
+// Les genres recherchés sont pré-cochés dans les filtres
 function cocherGenres() {
   const urlParams = new URLSearchParams(window.location.search);
   urlParams.forEach((value, key) => {

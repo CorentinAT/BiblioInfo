@@ -202,6 +202,7 @@ function modifierDoc(event) {
   });
 }
 
+// Fonction pour charger le document lié à un id
 async function chargerDoc(documentId) {
   const response = await fetch(`http://api.biblioinfo.live/document/${documentId}`, {
     method: 'GET',
@@ -212,6 +213,7 @@ async function chargerDoc(documentId) {
   return await response.json();
 }
 
+// Fonction pour pré-remplir les inputs avec les infos du document à modifier
 async function remplir_input(documentId) {
   const dataDocument = await chargerDoc(documentId);
   console.log(dataDocument);
@@ -243,6 +245,7 @@ async function remplir_input(documentId) {
   cocher_themes_genres(dataDocument);
 }
 
+// Pré-oche les thèmes et les genres liés au document à modifier
 function cocher_themes_genres(dataDocument) {
   var fieldset = document.getElementById('themes');
   var checkboxes = fieldset.querySelectorAll('input[type="checkbox"]');
