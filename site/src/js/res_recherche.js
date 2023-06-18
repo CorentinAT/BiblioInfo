@@ -23,3 +23,27 @@ window.addEventListener('DOMContentLoaded', function() {
     afficherRes(data);
   });
 })
+
+
+function afficherRes(listeRes) {
+  const div = document.getElementById("listecases");
+  let cases = "";
+  listeRes.forEach(doc => {
+    cases += `<a class="case" href="./page_doc.html?id=${doc.id}">`;
+    if(doc.disponible) {
+      cases += "<img class='img_dispo' src='../img/logo_dispo_true.PNG'>"
+    } else {
+      cases += "<img class='img_dispo' src='../img/logo_dispo_false.PNG'>"
+    }
+    cases += `
+      <img src=${doc.liencouverture} class="case-image">
+      <span class="case-text">${doc.titre}</span>
+      <span class="case-text">${doc.auteur}</span>
+      </a>
+    `
+  });
+  if(listeRes.length === 0) {
+    cases += '<p>Aucun document ne correspond à la recherche</p>'
+  }
+  div.innerHTML = cases;
+}
