@@ -1,6 +1,10 @@
 window.addEventListener('DOMContentLoaded', function() {
   const urlParams = new URLSearchParams(window.location.search);
   let titre = urlParams.get("titre");
+
+  inputTitre = document.getElementById("titre");
+  inputTitre.value = titre;
+
   titre = titre.replace(/ /g, "%20");
   const autresParametres = [];
   urlParams.forEach((value, key) => {
