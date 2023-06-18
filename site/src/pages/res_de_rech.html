@@ -2,12 +2,14 @@
 <html>
 <head>
   <title>Résultat de la recherche - BiblioInfo</title>
+  <script src="../js/res_recherche.js"></script>
+  <script src="../js/recherche.js"></script>
 
   <link rel="stylesheet" href="../css/all.css">
 
 
-  <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
-    <link rel="preconnect" href="https://fonts.gstatic.com/" >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
     
   <style>
@@ -75,63 +77,9 @@
 
 
 
-    
-  
-
-/* Style pour les cinq cases */
-.case-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+.img_dispo {
+  width: 40px;
 }
-
-.case {
-  width: 140px; /* Modifier la largeur des cases */
-  height: 200px; /* Modifier la hauteur des cases */
-  background-color: #efefef;
-  border-radius: 4px;
-}
-.case:first-child {
-  margin-left: 200px; /* Ajouter une marge à gauche pour la première case */
-}
-
-.case:last-child {
-  margin-right: 200px; /* Ajouter une marge à droite pour la dernière case */
-}
-
-.case-content {
-  position: relative;
-  height: 100%;
-}
-
-
-.case-image {
-  position: absolute;
-  top: 3%;
-  left: 17.5%;
-  right: 0%;
-  width: calc(100% - 50px);
-  height: auto;
-}
-
-.case-text {
-  position: absolute;
-  bottom: 12%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  width: 100%;
-  padding: 0 10px;
-  margin: 0;
-  color: black;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-}
-
-
-
 
 
 </style>
@@ -149,14 +97,11 @@
 </head>
 <body>
 
-
   <iframe src="../header/header.html" frameborder="0" width="100%" height="75px"></iframe>
-
-
 
   <div class="container">
     <h1>Rechercher dans la bibliothèque</h1>
-    <form class="form">
+    <form class="form" onSubmit="recherche()">
 
       <input type="checkbox" id="checkboxGenres" class="search-checkbox" onchange="toggleContent()" style="display: none;">
       <label for="checkboxGenres">
@@ -178,26 +123,8 @@
     </div>
   </div>
 
-
-  
-  <div class="case-container">
-    <div class="case">
-      <div class="case-content">
-        <img src="../img/couverture livre exemple.webp" alt="Image de la première case" class="case-image">
-        <p class="case-text">
-          la brume de bois et le loup <br>
-          Jean-pierre Fouko<br>
-        </p>
-      </div>
-    </div>
-    <div class="case"></div>
-    <div class="case"></div>
-    <div class="case"></div>
-    <div class="case"></div>
+  <div class="case-container" id="listecases">
   </div>
-  
-  
-  
 
   <script>
     function toggleContent() {
