@@ -1,3 +1,4 @@
+/*Illustration du document*/
 #couverture {
     height: 500px;
     width: auto;
@@ -6,11 +7,13 @@
     margin-left: 120px;
 }
 
+/*Notes étoiles*/
 .note {
     height: 30px;
     width: auto;
 }
 
+/*Partie gauche de la page (Illustration et note)*/
 .conteneur_gauche {
     display: flex;
     flex-direction: column;
@@ -23,6 +26,7 @@
     height: 500px;
 }
 
+/*Partie droite avec les informations du document + boutons*/
 .conteneur_droit {
     display: flex;
     flex-direction: column;
@@ -34,6 +38,7 @@
     width: 55%;
 }
 
+/*Paragraphe de descritption du document*/
 .description {
     display: flex;
     flex-direction: column;
@@ -41,20 +46,24 @@
     font-size: 15px;
 }
 
+/*Catégories de la description*/
 h3 {
     margin-bottom: 0px;
 }
 
+/*Alignement des catégories*/
 h3 span {
     display: inline;
     /* Affiche les spans sur la même ligne */
 }
 
+/*Disposition du conteneur droit*/
 .conteneur_droit div {
     display: flex;
     flex-wrap: wrap;
 }
 
+/*Disposition des catégories de la description*/
 .divAuteur,
 .divSynopsis,
 .divGenres,
@@ -63,17 +72,20 @@ h3 span {
     flex-direction: column;
 }
 
+/*Disposition catégorie lieu*/
 .divDispoLieu {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
 }
 
+/*Disposition contenu catégorie lieu*/
 .lieu {
     display: flex;
     flex-direction: column;
 }
 
+/*Disposition catégorie Note*/
 .divNote {
     margin-top: 30px;
     display: flex;
@@ -82,24 +94,29 @@ h3 span {
     padding-right: 20%;
 }
 
+/*Style des bouton de la catégorie note*/
 .divNote button {
     font-weight: bold;
 }
 
+/*Disposition des élements span de la disponibilité*/
 .dispo span {
     margin-left: 6px;
 }
 
+/*Disposition et style de la catégorie rayon*/
 .rayon #rayons {
     margin-left: 5px;
     font-weight: bold;
 }
 
+/*Disposiition et style de la catégorie étage*/
 .etage #etage {
     margin-left: 5px;
     font-weight: bold;
 }
 
+/*Couleur des boutons de notation*/
 #bt_suppr {
     background-color: rgb(255, 160, 160);
 }
@@ -113,7 +130,7 @@ h3 span {
 }
 
 #bt_modif:hover {
-    background-color:rgb(176, 235, 255);
+    background-color: rgb(176, 235, 255);
 }
 
 #bt_noter {
@@ -121,9 +138,14 @@ h3 span {
 }
 
 #bt_noter:hover {
-    background-color:rgb(226, 226, 58);
+    background-color: rgb(226, 226, 58);
 }
 
+.note button:hover {
+    background-color: rgb(250, 250, 115);
+}
+
+/*Style des boutons de notation*/
 button {
     border-radius: 5px;
     border: 1px solid black;
@@ -131,11 +153,7 @@ button {
     cursor: pointer;
 }
 
-
-.note button:hover {
-    background-color: rgb(250, 250, 115);
-}
-
+/*Style des labels (contenu des boutons)*/
 label {
     display: inline-block;
     margin-right: 2px;
@@ -147,10 +165,12 @@ label {
     text-align: center;
 }
 
+/*Couleur des labels*/
 .divNote label:hover {
     background-color: rgb(250, 250, 115);
 }
 
+/*Style et affichage du fieldset*/
 fieldset {
     border: none;
 }
