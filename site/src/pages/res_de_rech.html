@@ -14,12 +14,12 @@
     <iframe src="../header/header.html" frameborder="0" width="100%" height="75px"></iframe>
     <div class="container">
       <h1>Rechercher dans la bibliothèque</h1>
-      <form class="form" onSubmit="recherche()">
+      <form class="form" onSubmit="recherche(event)">
         <input type="checkbox" id="checkboxGenres" class="search-checkbox" onChange="toggleContent()" style="display: none;">
         <label for="checkboxGenres">
           <img src="../img/filtre.png" class="search-image2">
         </label>
-        <input type="text" class="search-bar" placeholder="Quel document cherchez-vous ?">
+        <input type="text" class="search-bar" id="titre" placeholder="Quel document cherchez-vous ?">
         <input type="image" src="../img/loupe.png" alt="Rechercher" class="search-image1">
       </form>
       <fieldset id="genres" class="box" style="display: none;">

@@ -19,7 +19,7 @@ function initialiserGenres() {
         </div>
       `
     }
-    contentDiv.innerHTML = options; // Insère les données récupérées dans le code HTML
+    contentDiv.innerHTML = options;
   })
   .catch(error => {
     console.error('Une erreur s\'est produite:', error);
@@ -28,7 +28,7 @@ function initialiserGenres() {
 
 function recherche(event) {
   event.preventDefault();
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#checkboxGenres):checked');
   const titre = document.getElementById("titre").value;
   
   if (checkboxes.length > 0) {
