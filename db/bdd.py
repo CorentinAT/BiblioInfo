@@ -96,7 +96,7 @@ def select_document_by_id(conn, idDoc):
 
 def select_documents_by_title_and_genres(conn, titre, doitEtreDispo, idsGenres):
   """Renvoie les informations des documents qui ont comme genres les genres qui ont un des idsGenres donnés (facultatif, liste de str, 0 à *), et qui contiennent la chaîne de caractère titre dans leur titre, si doitEtreDispo est à True, renvoie uniquement les documents disponibles"""
-  sql = f"SELECT d.* FROM Document d LEFT JOIN DefinitGenre dg ON d.id = dg.iddoc WHERE LOWER(d.titre) LIKE '%{titre.lower()}%'"
+  sql = f"SELECT DISTINCT d.* FROM Document d LEFT JOIN DefinitGenre dg ON d.id = dg.iddoc WHERE LOWER(d.titre) LIKE '%{titre.lower()}%'"
   if doitEtreDispo == True:
     sql += " AND disponible = True"
   if idsGenres != []:

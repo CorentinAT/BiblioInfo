@@ -104,7 +104,9 @@ function modifier() {
 
 //Supprimer le document
 function supprimer() {
-  fetch('http://api.biblioinfo.live/document/37/delete', {
+  var urlParams = new URLSearchParams(window.location.search);
+  var documentId = urlParams.get('id');
+  fetch(`http://api.biblioinfo.live/document/${documentId}/delete`, {
     method: 'DELETE',
     headers: {
       'Accept': 'application/json'
