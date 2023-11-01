@@ -22,5 +22,4 @@ Faire une application informatique utilisant une base de données, en ayant éta
 ## API
 
 La documentation de l'API est disponible à l'adresse suivante :
-
 https://api.biblioinfo.live/docs
