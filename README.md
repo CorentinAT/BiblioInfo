@@ -19,6 +19,14 @@ Faire une application informatique utilisant une base de données, en ayant éta
 - Le dossier **db** contient toute la partie back-end de l'application
 - Le dossier **site** qui contient le code du site web (le front-end)
 
+
+### DB
+
+Divisé en 5 fichiers :
+- **bdd.py** : création de la base de données (en l'exécutant) et fonctions qui la modifie directement
+- **api.py** : Api FastAPI, reçoit les requêtes et les interprète en utilisant les fonctions de **bdd.py**
+- **insertions_donnees.py** : À lancer juste après la création de la BD, insertion d'un jeu de données dans celle-c
+
 ## API
 
 La documentation de l'API est disponible à l'adresse suivante :
