@@ -25,7 +25,9 @@ Faire une application informatique utilisant une base de données, en ayant éta
 Divisé en 5 fichiers :
 - **bdd.py** : création de la base de données (en l'exécutant) et fonctions qui la modifie directement
 - **api.py** : Api FastAPI, reçoit les requêtes et les interprète en utilisant les fonctions de **bdd.py**
-- **insertions_donnees.py** : À lancer juste après la création de la BD, insertion d'un jeu de données dans celle-c
+- **verifs.py** : Vérifie l'existence de données dans la base lors d'insertions/modifications/suppressions en de servant des fonctions de **bdd.py**
+- **classes.py** : Conversion de données reçues par l'API en objets python pour les insérer dans la base
+- **insertions_donnees.py** : À lancer juste après la création de la BD, insertion d'un jeu de données dans celle-ci
 
 ## API
 
