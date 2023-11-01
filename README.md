@@ -1,7 +1,7 @@
 # BiblioInfo
 Site de gestion de bilbiothèque, projet fait en BUT1 Informatique.
 
-Fait avec Lucas PEREZ et Alexandre TODOROV.
+Fait avec Lucas PEREZ, Alexandre TODOROV et Marc SABATTIER.
 
 https://www.biblioinfo.live/
 
